@@ -18,6 +18,33 @@
     animation: animate 10s linear infinite;
 }
 
+.container-videos{
+    background: linear-gradient(90deg, #590d22, #a4133c, #d00000, #ff4d6d);
+    background-size: 40%;
+    height: 100vh;
+    font-family: 'Mukta', sans-serif;
+    height: 100vh;
+    font-family: 'Mukta', sans-serif;
+    animation: animate 10s linear infinite;
+}
+
+.container-stickers{
+    background: linear-gradient(90deg, #1b4332, #2d6a4f, #40916c, #52b788, #95d5b2);
+    background-size: 40%;
+    height: 100vh;
+    font-family: 'Mukta', sans-serif;
+    animation: animate 10s linear infinite;
+}
+
+.container-projects{
+    background: linear-gradient(90deg, #240046, #3c096c, #5a189a, #7b2cbf, #c77dff);
+    background-size: 40%;
+    height: 100vh;
+    font-family: 'Mukta', sans-serif;
+    animation: animate 10s linear infinite;
+}
+
+
 .container .navbar{
     width: 100%;
     height: 80px;
@@ -36,6 +63,7 @@
     color: white;
     /* navbar text colorı */
     text-transform:uppercase;
+    opacity: .5;
     
     
 }
@@ -83,5 +111,25 @@
 	100% {
 		background-position: 400%;
 	}
+}
+
+.navbar .right ul li a:hover{
+    opacity: 1;
+}
+
+.container .menu .menu-text{
+    color: white;
+    font-size: 8vh;
+    margin-left: 70vh;
+    margin-top: 30vh;
+}
+
+.container .menu .menu-text-2{
+    color: white;
+    font-size: 8vh;
+    margin-left: 70vh;
+    
+
+
 }
 
