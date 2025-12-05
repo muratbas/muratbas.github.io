@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    # -*- coding: utf-8 -*-
+
+def menu():
+    print "1- Kayıtları yaz\n2- Kayıtları Oku-Goster\n3- Kaydi ara-bul\n4- Çıkış"
+    secim = int(raw_input("Seçiminiz: "))
+    if secim == 1:
+        kayit_yaz()
+    elif secim == 2:
+        kayit_oku()
+    elif secim == 3:
+        kayit_ara()
+    elif secim == 4:
+        exit()
+    else:
+        print "Geçersiz seçim"
+
+def kayit_yaz():
+    numara = raw_input("Numaranız: ")
+    if numara == "0":
+        print "Program kapatılıyor..."
+        exit()
+    with open("kayitlar.txt", "a") as dosya:
+        adsoyad = raw_input("Adınız ve Soyadınız: ")
+        adres = raw_input("Adresiniz: ")
+        tel = raw_input("Telefon Numaranız: ")
+        kayit = "{}|{}|{}|{}\n".format(numara, adsoyad, adres, tel)
+        dosya.write(kayit)
+    print "——————————————————————"
+    print "Kayıt yazıldı"
+    print "——————————————————————"
+    menu()
+
+def kayit_oku():
+    with open("kayitlar.txt", "r") as dosya:
+        kayitlar = dosya.readlines()
+        for kayit in kayitlar:
+            print kayit
+    menu()
+
+def kayit_ara():
+    aranan = raw_input("Aranacak kayıt: ")
+    with open("kayitlar.txt", "r") as dosya:
+        kayitlar = dosya.readlines()
+        for kayit in kayitlar:
+            if aranan in kayit:
+                print kayit
+    menu()
+
+menu()
+</body>
+</html>
