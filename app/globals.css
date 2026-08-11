@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
+
+  --color-dark-slate: #0f172a;
+  --color-ferah-white: #ffffff;
+  --color-ice-gray: #ffffff;
+  --color-border-subtle: #e2e8f0;
+  --color-text-muted: #64748b;
+  --color-primary: #209CEE;
+  --color-primary-container: #1b87d2;
+  --color-secondary: #565e74;
+  --color-surface-container-low: #f8fafc;
+  --color-surface-variant: #f1f5f9;
+  --color-primary-fixed-dim: #93cbf5;
+  --color-secondary-fixed-dim: #bec6e0;
+  --color-tertiary-fixed-dim: #adc6ff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: #000000;
-  color: #ffffff;
-  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: #191c1e;
+  font-family: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Prevent image dragging globally */
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  pointer-events: auto;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 7s infinite ease-in-out;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Typography Utility Classes */
+.font-headline-md, .font-headline-sm, .font-display-lg, .font-display-lg-mobile,
+.font-body-lg, .font-body-md, .font-caption, .font-label-caps {
+  font-family: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
+}
+
+.text-display-lg {
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.text-display-lg-mobile {
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.text-headline-md {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.text-headline-sm {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.text-caption {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.text-label-caps {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Spacing tokens */
+.px-margin-page {
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
+
+.py-stack-lg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.mb-stack-md {
+  margin-bottom: 2rem;
+}
+
+.space-y-stack-md > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+.gap-gutter {
+  gap: 2rem;
+}
+
+.max-w-container-max {
+  max-width: 1280px;
 }
