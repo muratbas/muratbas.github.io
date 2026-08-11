@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { siteConfig } from "@/data/siteData";
 
 export default function Navbar() {
@@ -53,13 +52,15 @@ export default function Navbar() {
 
           {/* Action Buttons: Blog, CV, and LAB at far right */}
           <div className="flex items-center space-x-3">
-            {/* 1. Blog Button */}
-            <Link
-              href="/blog"
+            {/* 1. Blog Button (blog.muratbas.com adresine yönlendirir) */}
+            <a
+              href="https://blog.muratbas.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-black text-white hover:bg-[#27272a] hover:scale-105 px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-200 inline-block shadow-xs"
             >
               Blog
-            </Link>
+            </a>
 
             {/* 2. CV Button */}
             <a
@@ -90,12 +91,14 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle & Action Buttons */}
         <div className="md:hidden flex items-center space-x-2">
-          <Link
-            href="/blog"
+          <a
+            href="https://blog.muratbas.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-black text-white hover:bg-[#27272a] px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors"
           >
             Blog
-          </Link>
+          </a>
           <a
             href={siteConfig.resumeUrl}
             target="_blank"
