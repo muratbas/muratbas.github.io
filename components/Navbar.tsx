@@ -36,9 +36,9 @@ export default function Navbar() {
           </div>
         </a>
 
-        {/* Right Side: Nav Links + Blog & CV Buttons */}
+        {/* Right Side: Nav Links + Blog, CV & LAB Buttons */}
         <div className="hidden md:flex items-center space-x-8">
-          {/* Nav Links with 2-3px scale up effect on hover */}
+          {/* Nav Links */}
           <div className="flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -51,8 +51,9 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Action Buttons: Blog & CV (Smooth rounded-full pills, dark hover state) */}
+          {/* Action Buttons: Blog, CV, and LAB at far right */}
           <div className="flex items-center space-x-3">
+            {/* 1. Blog Button */}
             <Link
               href="/blog"
               className="bg-black text-white hover:bg-[#27272a] hover:scale-105 px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-200 inline-block shadow-xs"
@@ -60,6 +61,7 @@ export default function Navbar() {
               Blog
             </Link>
 
+            {/* 2. CV Button */}
             <a
               href={siteConfig.resumeUrl}
               target="_blank"
@@ -68,6 +70,21 @@ export default function Navbar() {
             >
               CV
             </a>
+
+            {/* 3. LAB Button (En sağda, canlı mavi-siyah animated gradient) */}
+            <a
+              href="https://lab.muratbas.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lab-button-blue-gradient text-white hover:scale-105 px-5 py-2 rounded-full text-sm font-semibold tracking-wide transition-transform duration-200 inline-block whitespace-nowrap shadow-md"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #000000 0%, #003b66 25%, #209CEE 50%, #003b66 75%, #000000 100%)",
+                backgroundSize: "200% 200%",
+                animation: "blueGradientShift 3s linear infinite",
+              }}
+            >
+              LAB
+            </a>
           </div>
         </div>
 
@@ -75,7 +92,7 @@ export default function Navbar() {
         <div className="md:hidden flex items-center space-x-2">
           <Link
             href="/blog"
-            className="bg-black text-white hover:bg-[#27272a] px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors"
+            className="bg-black text-white hover:bg-[#27272a] px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors"
           >
             Blog
           </Link>
@@ -83,9 +100,22 @@ export default function Navbar() {
             href={siteConfig.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-black text-white hover:bg-[#27272a] px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors"
+            className="bg-black text-white hover:bg-[#27272a] px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors"
           >
             CV
+          </a>
+          <a
+            href="https://lab.muratbas.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lab-button-blue-gradient text-white px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-transform inline-block whitespace-nowrap"
+            style={{
+              backgroundImage: "linear-gradient(90deg, #000000 0%, #003b66 25%, #209CEE 50%, #003b66 75%, #000000 100%)",
+              backgroundSize: "200% 200%",
+              animation: "blueGradientShift 3s linear infinite",
+            }}
+          >
+            LAB
           </a>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
