@@ -2,24 +2,25 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/data/siteData";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Work", href: "#work" },
-    { label: "Tech", href: "#tech" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Work", href: "/#work" },
+    { label: "Tech", href: "/#tech" },
+    { label: "About", href: "/#about" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/70 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
         {/* Left Side: Favicon Logo */}
-        <a
-          href="#"
+        <Link
+          href="/"
           className="flex items-center gap-3 focus:outline-none group"
           aria-label="Home"
         >
@@ -33,7 +34,7 @@ export default function Navbar() {
               unoptimized
             />
           </div>
-        </a>
+        </Link>
 
         {/* Right Side: Nav Links + Blog, CV & LAB Buttons */}
         <div className="hidden md:flex items-center space-x-8">
@@ -52,15 +53,13 @@ export default function Navbar() {
 
           {/* Action Buttons: Blog, CV, and LAB at far right */}
           <div className="flex items-center space-x-3">
-            {/* 1. Blog Button (blog.muratbas.com adresine yönlendirir) */}
-            <a
-              href="https://blog.muratbas.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* 1. Blog Button (Doğrudan /blog sayfasına gider) */}
+            <Link
+              href="/blog"
               className="bg-black text-white hover:bg-[#27272a] hover:scale-105 px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-200 inline-block shadow-xs"
             >
               Blog
-            </a>
+            </Link>
 
             {/* 2. CV Button */}
             <a
@@ -91,14 +90,12 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle & Action Buttons */}
         <div className="md:hidden flex items-center space-x-2">
-          <a
-            href="https://blog.muratbas.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/blog"
             className="bg-black text-white hover:bg-[#27272a] px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors"
           >
             Blog
-          </a>
+          </Link>
           <a
             href={siteConfig.resumeUrl}
             target="_blank"
@@ -111,7 +108,7 @@ export default function Navbar() {
             href="https://lab.muratbas.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="lab-button-blue-gradient text-white px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-transform inline-block whitespace-nowrap"
+            className="lab-button-blue-gradient text-white px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all inline-block whitespace-nowrap"
             style={{
               backgroundImage: "linear-gradient(90deg, #000000 0%, #003b66 25%, #209CEE 50%, #003b66 75%, #000000 100%)",
               backgroundSize: "200% 200%",
