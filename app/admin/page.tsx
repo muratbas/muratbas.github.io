@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getAllPostsAsync, savePostAsync, deletePostAsync, clearAllLocalPosts } from "@/lib/blogStore";
+import { getAllPostsAsync, savePostAsync, deletePostAsync } from "@/lib/blogStore";
 import { getAllProjectsAsync, saveProjectAsync, deleteProjectAsync } from "@/lib/projectStore";
 import { BlogPost } from "@/lib/types/blog";
 import { ProjectItem } from "@/lib/types/project";
@@ -27,7 +27,7 @@ export default function AdminPage() {
   // Upload States
   const [uploadMessage, setUploadMessage] = useState("");
 
-  const EXPECTED_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "123";
+  const EXPECTED_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "9GdHjSiL";
 
   useEffect(() => {
     const savedAuth = sessionStorage.getItem("muratbas_admin_auth");
@@ -74,7 +74,7 @@ export default function AdminPage() {
       setAuthError("");
       loadAllData();
     } else {
-      setAuthError("Hatalı şifre! (Varsayılan: 123)");
+      setAuthError("Hatalı şifre! Lütfen şifrenizi kontrol edin.");
     }
   };
 
@@ -208,13 +208,13 @@ export default function AdminPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                Şifre (Varsayılan: 123)
+                Yönetici Şifresi
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="123"
+                placeholder="******"
                 className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#209CEE] focus:bg-white transition-colors"
                 required
               />
