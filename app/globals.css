@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), 'Inter', sans-serif;
+  --font-sans: var(--font-clash), 'Roboto', sans-serif;
 
   --color-dark-slate: #0f172a;
   --color-ferah-white: #ffffff;
@@ -25,7 +25,7 @@ html {
 body {
   background-color: #ffffff;
   color: #191c1e;
-  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-family: var(--font-clash), var(--font-roboto), sans-serif;
   overflow-x: hidden;
 }
 
@@ -111,10 +111,49 @@ img {
   animation-delay: 4s;
 }
 
-/* Typography Utility Classes default to Inter outside header & footer */
+/* Typography Utility Classes default to ClashDisplay outside header & footer */
 .font-headline-md, .font-headline-sm, .font-display-lg, .font-display-lg-mobile,
 .font-body-lg, .font-body-md, .font-caption, .font-label-caps {
-  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-family: var(--font-clash), var(--font-roboto), sans-serif;
+}
+
+.text-display-lg {
+  font-size: 64px;
+  line-height: 72px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.text-display-lg-mobile {
+  font-size: 44px;
+  line-height: 52px;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.text-headline-md {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.text-headline-sm {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+
+.text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
 }
 
 /* Spacing tokens */

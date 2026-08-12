@@ -10,6 +10,12 @@ const aeonik = localFont({
   display: "swap",
 });
 
+const clashDisplay = localFont({
+  src: "../public/fonts/ClashDisplay-Medium.ttf",
+  variable: "--font-clash",
+  display: "swap",
+});
+
 const roboto = Roboto({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "700"],
@@ -19,6 +25,7 @@ const roboto = Roboto({
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -52,7 +59,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className={`scroll-smooth ${aeonik.variable} ${roboto.variable} ${inter.variable}`}>
+    <html
+      lang="tr"
+      className={`scroll-smooth ${aeonik.variable} ${clashDisplay.variable} ${roboto.variable} ${inter.variable}`}
+    >
       <head>
         <link
           rel="stylesheet"
@@ -60,9 +70,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-[#191c1e] font-sans">
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

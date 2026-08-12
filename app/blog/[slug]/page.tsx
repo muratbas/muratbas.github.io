@@ -7,6 +7,20 @@ import { notFound } from "next/navigation";
 import { getPostBySlugAsync } from "@/lib/blogStore";
 import { BlogPost } from "@/lib/types/blog";
 
+// Safe URL protocol sanitizer (prevents javascript: XSS injection)
+function sanitizeUrl(url: string): string {
+  const trimmed = url.trim();
+  if (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("/") ||
+    trimmed.startsWith("mailto:")
+  ) {
+    return trimmed;
+  }
+  return "#";
+}
+
 // Simple Markdown / HTML renderer helper for blog body content
 function renderMarkdownContent(content: string) {
   const lines = content.trim().split("\n");
@@ -98,7 +112,7 @@ function renderMarkdownContent(content: string) {
   return elements;
 }
 
-// Parse inline Markdown links [text](url) and bold **text**
+// Parse inline Markdown links [text](url) and bold **text** safely
 function parseInlineFormatting(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   const regex = /(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g;
@@ -114,10 +128,11 @@ function parseInlineFormatting(text: string): React.ReactNode[] {
     if (token.startsWith("[")) {
       const linkMatch = /\[([^\]]+)\]\(([^)]+)\)/.exec(token);
       if (linkMatch) {
+        const safeHref = sanitizeUrl(linkMatch[2]);
         parts.push(
           <a
             key={match.index}
-            href={linkMatch[2]}
+            href={safeHref}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#209CEE] font-medium hover:underline inline-items-center gap-0.5"

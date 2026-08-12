@@ -28,18 +28,15 @@ export default function BlogIndexPage() {
   const regularPosts = posts.filter((p) => p.id !== featuredPost?.id);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 sm:px-10 py-8">
-      {/* Blog Header & Title */}
+    <div
+      className="max-w-7xl mx-auto px-6 sm:px-10 py-8"
+      style={{ fontFamily: "var(--font-clash), sans-serif" }}
+    >
+      {/* Blog Header & Title (Yazılar & Notlar removed) */}
       <div className="border-b border-slate-200 pb-8 mb-12">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#209CEE] bg-blue-50 px-3 py-1 rounded-full border border-blue-100 inline-block mb-3">
-          Yazılar & Notlar
-        </span>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900">
           Murat Baş Blog
         </h1>
-        <p className="text-slate-600 mt-2 text-base sm:text-lg max-w-2xl">
-          Web geliştirme, oyun tasarımları, veri bilimi ve teknoloji dünyasından notlar.
-        </p>
       </div>
 
       {loading ? (
