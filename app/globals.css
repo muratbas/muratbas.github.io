@@ -29,6 +29,33 @@ body {
   overflow-x: hidden;
 }
 
+/* Custom Site Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0f172a;
+  border-radius: 9999px;
+  border: 2px solid #f8fafc;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #209CEE;
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0f172a #f8fafc;
+}
+
 /* Header and Footer explicitly preserve Aeonik font system */
 header, footer {
   font-family: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
