@@ -8,6 +8,7 @@ import { ProjectItem } from "@/lib/types/project";
 export default function Projects() {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [showAll, setShowAll] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadProjects() {
@@ -16,10 +17,16 @@ export default function Projects() {
         setProjects(data);
       } catch (err) {
         console.error("Projects load error:", err);
+      } finally {
+        setLoading(false);
       }
     }
     loadProjects();
   }, []);
+
+  if (!loading && projects.length === 0) {
+    return null; // Hide section cleanly if no projects are published yet
+  }
 
   const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
@@ -59,7 +66,7 @@ export default function Projects() {
                 />
               </div>
 
-              {/* Project Content (NO TAGS as requested) */}
+              {/* Project Content (NO TAGS) */}
               <div className="p-7 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#209CEE] transition-colors leading-snug">
@@ -101,17 +108,19 @@ export default function Projects() {
         </div>
 
         {/* See All Projects Button */}
-        <div className="mt-14 text-center">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="bg-black hover:bg-[#27272a] text-white font-medium text-xs sm:text-sm px-8 py-3.5 rounded-full transition-all hover:scale-105 shadow-sm inline-flex items-center gap-2"
-          >
-            <span>{showAll ? "Show Less" : "See All Projects"}</span>
-            <span className="material-symbols-outlined text-sm">
-              {showAll ? "expand_less" : "expand_more"}
-            </span>
-          </button>
-        </div>
+        {projects.length > 3 && (
+          <div className="mt-14 text-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="bg-black hover:bg-[#27272a] text-white font-medium text-xs sm:text-sm px-8 py-3.5 rounded-full transition-all hover:scale-105 shadow-sm inline-flex items-center gap-2"
+            >
+              <span>{showAll ? "Show Less" : "See All Projects"}</span>
+              <span className="material-symbols-outlined text-sm">
+                {showAll ? "expand_less" : "expand_more"}
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

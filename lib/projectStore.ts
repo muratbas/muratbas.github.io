@@ -1,29 +1,32 @@
 import { ProjectItem } from "./types/project";
-import { siteConfig } from "@/data/siteData";
 import { db, isFirebaseConfigured } from "./firebase";
+import {
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
 const STORAGE_KEY = "muratbas_projects";
 const COLLECTION_NAME = "projects";
 
-// Initial seed projects from siteConfig (without tags)
-const DEFAULT_PROJECTS: ProjectItem[] = siteConfig.projects.map((p) => ({
-  id: p.id,
-  title: p.title,
-  description: p.description,
-  image: p.image,
-  liveUrl: p.link,
-  featured: true,
-}));
+// Empty default projects array (No sample fillers)
+const DEFAULT_PROJECTS: ProjectItem[] = [];
 
 export function getStoredProjects(): ProjectItem[] {
   if (typeof window === "undefined") return DEFAULT_PROJECTS;
   try {
     const data = localStorage.getItem(STORAGE_KEY);
-    if (!data) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_PROJECTS));
-      return DEFAULT_PROJECTS;
+    if (!data) return DEFAULT_PROJECTS;
+    const parsed: ProjectItem[] = JSON.parse(data);
+    const filtered = parsed.filter(
+      (p) => p.id !== "hotel-management" && p.id !== "time-is-up" && p.id !== "omu-forum"
+    );
+    if (filtered.length !== parsed.length) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
     }
-    return JSON.parse(data);
+    return filtered;
   } catch (e) {
     console.error("Failed to read projects from localStorage", e);
     return DEFAULT_PROJECTS;
@@ -39,20 +42,30 @@ export function saveProjects(projects: ProjectItem[]) {
   }
 }
 
+export function clearAllLocalProjects() {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (e) {
+    console.error("Failed to clear projects from localStorage", e);
+  }
+}
+
 export async function getAllProjectsAsync(): Promise<ProjectItem[]> {
   if (db && isFirebaseConfigured) {
     try {
-      const { collection, getDocs } = require("firebase/firestore");
       const colRef = collection(db, COLLECTION_NAME);
       const snapshot = await getDocs(colRef);
       if (!snapshot.empty) {
-        return snapshot.docs.map((docSnap: any) => ({
+        return snapshot.docs.map((docSnap) => ({
           ...(docSnap.data() as ProjectItem),
           id: docSnap.id,
         }));
+      } else {
+        return [];
       }
     } catch (err) {
-      console.warn("Firestore projects fetch error, using local fallback:", err);
+      console.warn("Firestore projects fetch error:", err);
     }
   }
   return getStoredProjects();
@@ -74,16 +87,18 @@ export async function saveProjectAsync(
     featured: projectData.featured ?? true,
   };
 
+  // 1. Save to Firestore Cloud Store
   if (db && isFirebaseConfigured) {
     try {
-      const { doc, setDoc } = require("firebase/firestore");
       const docRef = doc(db, COLLECTION_NAME, id);
       await setDoc(docRef, finalProject, { merge: true });
+      console.log("Successfully saved project to Firestore:", id);
     } catch (err) {
       console.error("Error saving project to Firestore:", err);
     }
   }
 
+  // 2. Save to LocalStorage Fallback
   const projects = getStoredProjects();
   const existingIndex = projects.findIndex((p) => p.id === id);
   if (existingIndex >= 0) {
@@ -99,7 +114,6 @@ export async function saveProjectAsync(
 export async function deleteProjectAsync(id: string): Promise<void> {
   if (db && isFirebaseConfigured) {
     try {
-      const { doc, deleteDoc } = require("firebase/firestore");
       const docRef = doc(db, COLLECTION_NAME, id);
       await deleteDoc(docRef);
     } catch (err) {

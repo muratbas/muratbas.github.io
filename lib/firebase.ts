@@ -1,35 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
-let db: any = null;
-let storage: any = null;
-let isFirebaseConfigured = false;
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
 
-try {
-  const firebaseApiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
-  const firebaseProjectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+// Initialize Firebase App & Services at top-level so db is always a valid Firestore instance
+const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-  if (firebaseApiKey && firebaseProjectId) {
-    // Dynamic import safety fallback for build environments
-    const { initializeApp, getApps, getApp } = require("firebase/app");
-    const { getFirestore } = require("firebase/firestore");
-    const { getStorage } = require("firebase/storage");
+const isFirebaseConfigured = Boolean(
+  process.env.NEXT_PUBLIC_FIREBASE_API_KEY && process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+);
 
-    const firebaseConfig = {
-      apiKey: firebaseApiKey,
-      authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-      projectId: firebaseProjectId,
-      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-      messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-      appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    };
-
-    const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    storage = getStorage(app);
-    isFirebaseConfigured = true;
-  }
-} catch (e) {
-  console.warn("Firebase fallback mode:", e);
-}
-
-export { db, storage, isFirebaseConfigured };
+export { app, db, storage, isFirebaseConfigured };

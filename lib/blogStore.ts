@@ -22,7 +22,6 @@ export function getStoredPosts(): BlogPost[] {
     const data = localStorage.getItem(STORAGE_KEY);
     if (!data) return [];
     const parsed: BlogPost[] = JSON.parse(data);
-    // If local storage contains old sample posts with IDs 1, 2, 3, auto-purge them!
     const filtered = parsed.filter((p) => p.id !== "1" && p.id !== "2" && p.id !== "3");
     if (filtered.length !== parsed.length) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
@@ -74,7 +73,7 @@ export async function getAllPostsAsync(): Promise<BlogPost[]> {
         return [];
       }
     } catch (err) {
-      console.warn("Firestore fetch warning, falling back to LocalStorage:", err);
+      console.warn("Firestore posts fetch warning, falling back to LocalStorage:", err);
     }
   }
   return getStoredPosts();
@@ -142,6 +141,7 @@ export async function savePostAsync(
     try {
       const docRef = doc(db, COLLECTION_NAME, id);
       await setDoc(docRef, finalPost, { merge: true });
+      console.log("Successfully saved post to Firestore:", id);
     } catch (err) {
       console.error("Error saving post to Firestore:", err);
     }
