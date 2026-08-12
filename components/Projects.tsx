@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { getAllProjectsAsync } from "@/lib/projectStore";
 import { ProjectItem } from "@/lib/types/project";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Projects() {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
+  const isTr = language === "tr";
 
   useEffect(() => {
     async function loadProjects() {
@@ -25,7 +28,7 @@ export default function Projects() {
   }, []);
 
   if (!loading && projects.length === 0) {
-    return null; // Hide section cleanly if no projects are published yet
+    return null;
   }
 
   const displayedProjects = showAll ? projects : projects.slice(0, 3);
@@ -34,18 +37,10 @@ export default function Projects() {
     <section id="work" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#209CEE] bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100 inline-block mb-3">
-              Selected Work
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Featured Projects
-            </h2>
-          </div>
-          <p className="text-slate-600 text-sm max-w-md">
-            A showcase of web applications, 2D game mechanics, and software experiments.
-          </p>
+        <div className="mb-14">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            {isTr ? "Öne Çıkan Projeler" : "Featured Projects"}
+          </h2>
         </div>
 
         {/* Projects Grid */}
@@ -66,7 +61,7 @@ export default function Projects() {
                 />
               </div>
 
-              {/* Project Content (NO TAGS) */}
+              {/* Project Content */}
               <div className="p-7 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#209CEE] transition-colors leading-snug">
@@ -89,7 +84,9 @@ export default function Projects() {
                       GitHub &rarr;
                     </a>
                   ) : (
-                    <span className="text-xs font-semibold text-slate-400">View Project</span>
+                    <span className="text-xs font-semibold text-slate-400">
+                      {isTr ? "Projeyi İncele" : "View Project"}
+                    </span>
                   )}
                   {project.liveUrl && project.liveUrl !== "#" && (
                     <a
@@ -98,7 +95,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="text-xs font-semibold text-[#209CEE] hover:underline inline-flex items-center gap-1"
                     >
-                      Live Demo &rarr;
+                      {isTr ? "Canlı Demo &rarr;" : "Live Demo &rarr;"}
                     </a>
                   )}
                 </div>
@@ -114,7 +111,15 @@ export default function Projects() {
               onClick={() => setShowAll(!showAll)}
               className="bg-black hover:bg-[#27272a] text-white font-medium text-xs sm:text-sm px-8 py-3.5 rounded-full transition-all hover:scale-105 shadow-sm inline-flex items-center gap-2"
             >
-              <span>{showAll ? "Show Less" : "See All Projects"}</span>
+              <span>
+                {showAll
+                  ? isTr
+                    ? "Daha Az Göster"
+                    : "Show Less"
+                  : isTr
+                  ? "Tüm Projeleri Gör"
+                  : "See All Projects"}
+              </span>
               <span className="material-symbols-outlined text-sm">
                 {showAll ? "expand_less" : "expand_more"}
               </span>

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
+  --font-sans: var(--font-inter), 'Inter', sans-serif;
 
   --color-dark-slate: #0f172a;
   --color-ferah-white: #ffffff;
@@ -25,8 +25,13 @@ html {
 body {
   background-color: #ffffff;
   color: #191c1e;
-  font-family: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
   overflow-x: hidden;
+}
+
+/* Header and Footer explicitly preserve Aeonik font system */
+header, footer {
+  font-family: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
 }
 
 /* Prevent image dragging globally */
@@ -106,63 +111,10 @@ img {
   animation-delay: 4s;
 }
 
-/* Typography Utility Classes */
+/* Typography Utility Classes default to Inter outside header & footer */
 .font-headline-md, .font-headline-sm, .font-display-lg, .font-display-lg-mobile,
 .font-body-lg, .font-body-md, .font-caption, .font-label-caps {
-  font-family: var(--font-aeonik), var(--font-roboto), 'Roboto', sans-serif;
-}
-
-.text-display-lg {
-  font-size: 64px;
-  line-height: 72px;
-  letter-spacing: -0.02em;
-  font-weight: 700;
-}
-
-.text-display-lg-mobile {
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: -0.02em;
-  font-weight: 700;
-}
-
-.text-headline-md {
-  font-size: 32px;
-  line-height: 40px;
-  letter-spacing: -0.01em;
-  font-weight: 700;
-}
-
-.text-headline-sm {
-  font-size: 24px;
-  line-height: 32px;
-  font-weight: 700;
-}
-
-.text-body-lg {
-  font-size: 18px;
-  line-height: 28px;
-  font-weight: 500;
-}
-
-.text-body-md {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
-}
-
-.text-caption {
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-.text-label-caps {
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-family: var(--font-inter), 'Inter', sans-serif;
 }
 
 /* Spacing tokens */

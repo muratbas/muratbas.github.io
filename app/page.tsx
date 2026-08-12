@@ -10,7 +10,8 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-between selection:bg-[#209CEE] selection:text-white">
       <Navbar />
-      <main className="pt-20 flex-grow">
+      {/* Homepage Main Content uses Inter Font */}
+      <main className="pt-20 flex-grow font-inter style-inter" style={{ fontFamily: "var(--font-inter), 'Inter', sans-serif" }}>
         <Hero />
         <Projects />
         <TechStack />

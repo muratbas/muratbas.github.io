@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Roboto } from "next/font/google";
+import { Roboto, Inter } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const aeonik = localFont({
   src: "../public/fonts/AeonikTRIAL-Bold.otf",
@@ -13,6 +14,12 @@ const roboto = Roboto({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "700"],
   variable: "--font-roboto",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -45,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${aeonik.variable} ${roboto.variable}`}>
+    <html lang="tr" className={`scroll-smooth ${aeonik.variable} ${roboto.variable} ${inter.variable}`}>
       <head>
         <link
           rel="stylesheet"
@@ -53,7 +60,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-[#191c1e] font-sans">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

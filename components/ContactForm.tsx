@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 import { siteConfig } from "@/data/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ContactForm() {
+  const { language } = useLanguage();
+  const isTr = language === "tr";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +39,7 @@ export default function ContactForm() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
           <h2 className="font-headline-md text-headline-md text-[#0f172a]">
-            Bana Ulaşın
+            {isTr ? "Bana Ulaşın" : "Contact Me"}
           </h2>
         </div>
 
@@ -45,7 +49,9 @@ export default function ContactForm() {
         >
           {submitted && (
             <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium animate-in fade-in">
-              E-posta uygulamanız açılıyor! Mesajınız doğrudan iletilecektir.
+              {isTr
+                ? "E-posta uygulamanız açılıyor! Mesajınız doğrudan iletilecektir."
+                : "Your email client is opening! Your message will be sent directly."}
             </div>
           )}
 
@@ -55,7 +61,7 @@ export default function ContactForm() {
                 htmlFor="name"
                 className="block text-sm font-medium text-[#0f172a] mb-2"
               >
-                İsminiz
+                {isTr ? "İsminiz" : "Your Name"}
               </label>
               <input
                 type="text"
@@ -74,7 +80,7 @@ export default function ContactForm() {
                 htmlFor="email"
                 className="block text-sm font-medium text-[#0f172a] mb-2"
               >
-                E-posta Adresiniz
+                {isTr ? "E-posta Adresiniz" : "Your Email"}
               </label>
               <input
                 type="email"
@@ -94,7 +100,7 @@ export default function ContactForm() {
               htmlFor="subject"
               className="block text-sm font-medium text-[#0f172a] mb-2"
             >
-              Konu
+              {isTr ? "Konu" : "Subject"}
             </label>
             <input
               type="text"
@@ -113,7 +119,7 @@ export default function ContactForm() {
               htmlFor="message"
               className="block text-sm font-medium text-[#0f172a] mb-2"
             >
-              Mesajınız
+              {isTr ? "Mesajınız" : "Message"}
             </label>
             <textarea
               id="message"
@@ -131,7 +137,7 @@ export default function ContactForm() {
             type="submit"
             className="w-full bg-black text-white hover:bg-[#209CEE] py-3.5 px-8 rounded-full font-medium text-sm tracking-wide transition-all duration-300 shadow-sm hover:shadow-md active:scale-[0.99]"
           >
-            Gönder
+            {isTr ? "Gönder" : "Send"}
           </button>
         </form>
       </div>

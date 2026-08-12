@@ -1,14 +1,22 @@
+"use client";
+
 import { siteConfig } from "@/data/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TechStack() {
+  const { language } = useLanguage();
+  const isTr = language === "tr";
+
   return (
     <section className="py-stack-lg px-margin-page max-w-container-max mx-auto" id="tech">
       <div className="text-center mb-stack-md">
         <h2 className="font-headline-md text-headline-md text-[#0f172a] mb-2">
-          Technical Arsenal
+          {isTr ? "Teknik Yetkinlikler" : "Technical Arsenal"}
         </h2>
         <p className="font-body-md text-body-md text-[#64748b]">
-          Tools and technologies I use to build digital experiences.
+          {isTr
+            ? "Dijital deneyimler geliştirmek için kullandığım araçlar ve teknolojiler."
+            : "Tools and technologies I use to build digital experiences."}
         </p>
       </div>
 
@@ -24,7 +32,13 @@ export default function TechStack() {
                   {category.icon}
                 </span>
                 <h3 className="font-headline-sm text-headline-sm text-[#0f172a]">
-                  {category.title}
+                  {category.title === "Web Development" && isTr
+                    ? "Web Geliştirme"
+                    : category.title === "Game Development" && isTr
+                    ? "Oyun Geliştirme"
+                    : category.title === "Data & AI" && isTr
+                    ? "Veri & Yapay Zeka"
+                    : category.title}
                 </h3>
               </div>
 
