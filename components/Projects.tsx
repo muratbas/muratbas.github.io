@@ -1,70 +1,116 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { siteConfig } from "@/data/siteData";
+import { getAllProjectsAsync } from "@/lib/projectStore";
+import { ProjectItem } from "@/lib/types/project";
 
 export default function Projects() {
+  const [projects, setProjects] = useState<ProjectItem[]>([]);
+  const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        const data = await getAllProjectsAsync();
+        setProjects(data);
+      } catch (err) {
+        console.error("Projects load error:", err);
+      }
+    }
+    loadProjects();
+  }, []);
+
+  const displayedProjects = showAll ? projects : projects.slice(0, 3);
+
   return (
-    <section className="py-stack-lg px-margin-page bg-[#f8fafc]" id="work">
-      <div className="max-w-container-max mx-auto">
-        <div className="text-center mb-stack-md">
-          <h2 className="font-headline-md text-headline-md text-[#0f172a] mb-2">
-            Featured Projects
-          </h2>
-          <p className="font-body-md text-body-md text-[#64748b]">
-            A selection of recent work across web and game development.
+    <section id="work" className="py-24 bg-white relative">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#209CEE] bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100 inline-block mb-3">
+              Selected Work
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Featured Projects
+            </h2>
+          </div>
+          <p className="text-slate-600 text-sm max-w-md">
+            A showcase of web applications, 2D game mechanics, and software experiments.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
-          {siteConfig.projects.map((project) => (
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {displayedProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-white border border-[#e2e8f0]/80 rounded-2xl overflow-hidden group hover:shadow-xl hover:border-[#209CEE]/40 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between"
+              className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden hover:border-slate-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col shadow-xs"
             >
-              <div>
-                <div className="h-48 bg-[#f1f5f9] relative overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
-                  />
-                </div>
+              {/* Project Image */}
+              <div className="relative h-56 w-full bg-slate-100 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  unoptimized
+                />
+              </div>
 
-                <div className="p-6">
-                  <h3 className="font-headline-sm text-headline-sm text-[#0f172a] mb-2">
+              {/* Project Content (NO TAGS as requested) */}
+              <div className="p-7 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#209CEE] transition-colors leading-snug">
                     {project.title}
                   </h3>
-                  <p className="font-body-md text-body-md text-[#565e74] mb-4 line-clamp-3">
+                  <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed line-clamp-3">
                     {project.description}
                   </p>
                 </div>
-              </div>
 
-              <div className="px-6 pb-6 pt-0">
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs font-medium text-[#64748b] uppercase tracking-wider bg-[#f1f5f9] px-3 py-1 rounded-lg"
+                {/* Actions Bar */}
+                <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+                  {project.githubUrl ? (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors inline-flex items-center gap-1"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      GitHub &rarr;
+                    </a>
+                  ) : (
+                    <span className="text-xs font-semibold text-slate-400">View Project</span>
+                  )}
+                  {project.liveUrl && project.liveUrl !== "#" && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-semibold text-[#209CEE] hover:underline inline-flex items-center gap-1"
+                    >
+                      Live Demo &rarr;
+                    </a>
+                  )}
                 </div>
-
-                <a
-                  href={project.link}
-                  className="inline-flex items-center font-label-caps text-label-caps text-[#209CEE] hover:text-[#1b87d2] transition-colors group-hover:translate-x-1 duration-200"
-                >
-                  View Project{" "}
-                  <span className="material-symbols-outlined ml-1 text-[16px]">
-                    arrow_outward
-                  </span>
-                </a>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* See All Projects Button */}
+        <div className="mt-14 text-center">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="bg-black hover:bg-[#27272a] text-white font-medium text-xs sm:text-sm px-8 py-3.5 rounded-full transition-all hover:scale-105 shadow-sm inline-flex items-center gap-2"
+          >
+            <span>{showAll ? "Show Less" : "See All Projects"}</span>
+            <span className="material-symbols-outlined text-sm">
+              {showAll ? "expand_less" : "expand_more"}
+            </span>
+          </button>
         </div>
       </div>
     </section>
