@@ -45,63 +45,58 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayedProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden hover:border-slate-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col shadow-xs"
-            >
-              {/* Project Image */}
-              <div className="relative h-56 w-full bg-slate-100 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  unoptimized
-                />
-              </div>
+          {displayedProjects.map((project) => {
+            const targetUrl = project.url || project.liveUrl || project.githubUrl;
 
-              {/* Project Content */}
-              <div className="p-7 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#209CEE] transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
+            return (
+              <div
+                key={project.id}
+                className="group bg-white border border-slate-200/90 rounded-3xl overflow-hidden hover:border-slate-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col shadow-xs"
+              >
+                {/* Project Image */}
+                <div className="relative h-56 w-full bg-slate-100 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    unoptimized
+                  />
                 </div>
 
-                {/* Actions Bar */}
-                <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
-                  {project.githubUrl ? (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors inline-flex items-center gap-1"
-                    >
-                      GitHub &rarr;
-                    </a>
-                  ) : (
-                    <span className="text-xs font-semibold text-slate-400">
-                      {isTr ? "Projeyi İncele" : "View Project"}
-                    </span>
-                  )}
-                  {project.liveUrl && project.liveUrl !== "#" && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-semibold text-[#209CEE] hover:underline inline-flex items-center gap-1"
-                    >
-                      {isTr ? "Canlı Demo &rarr;" : "Live Demo &rarr;"}
-                    </a>
-                  )}
+                {/* Project Content */}
+                <div className="p-7 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#209CEE] transition-colors leading-snug">
+                      {project.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed line-clamp-3">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Single Main Action Bar */}
+                  <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+                    {targetUrl && targetUrl !== "#" ? (
+                      <a
+                        href={targetUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-semibold text-[#209CEE] hover:underline inline-flex items-center gap-1.5"
+                      >
+                        {isTr ? "Projeyi İncele" : "View Project"}
+                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                      </a>
+                    ) : (
+                      <span className="text-xs font-semibold text-slate-400 inline-flex items-center gap-1">
+                        {isTr ? "Projeyi İncele" : "View Project"}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* See All Projects Button */}

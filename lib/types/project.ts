@@ -3,6 +3,7 @@ export interface ProjectItem {
   title: string;
   description: string;
   image: string;
+  url?: string;
   githubUrl?: string;
   liveUrl?: string;
   featured?: boolean;

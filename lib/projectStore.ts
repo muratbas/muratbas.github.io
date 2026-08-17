@@ -11,7 +11,6 @@ import {
 const STORAGE_KEY = "muratbas_projects";
 const COLLECTION_NAME = "projects";
 
-// Empty default projects array (No sample fillers)
 const DEFAULT_PROJECTS: ProjectItem[] = [];
 
 export function getStoredProjects(): ProjectItem[] {
@@ -57,10 +56,14 @@ export async function getAllProjectsAsync(): Promise<ProjectItem[]> {
       const colRef = collection(db, COLLECTION_NAME);
       const snapshot = await getDocs(colRef);
       if (!snapshot.empty) {
-        return snapshot.docs.map((docSnap) => ({
-          ...(docSnap.data() as ProjectItem),
-          id: docSnap.id,
-        }));
+        return snapshot.docs.map((docSnap) => {
+          const data = docSnap.data() as ProjectItem;
+          return {
+            ...data,
+            id: docSnap.id,
+            url: data.url || data.liveUrl || data.githubUrl || "",
+          };
+        });
       } else {
         return [];
       }
@@ -68,7 +71,10 @@ export async function getAllProjectsAsync(): Promise<ProjectItem[]> {
       console.warn("Firestore projects fetch error:", err);
     }
   }
-  return getStoredProjects();
+  return getStoredProjects().map((p) => ({
+    ...p,
+    url: p.url || p.liveUrl || p.githubUrl || "",
+  }));
 }
 
 export async function saveProjectAsync(
@@ -82,8 +88,7 @@ export async function saveProjectAsync(
     image:
       projectData.image ||
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-    githubUrl: projectData.githubUrl || "",
-    liveUrl: projectData.liveUrl || "#",
+    url: projectData.url || "",
     featured: projectData.featured ?? true,
   };
 
@@ -92,7 +97,6 @@ export async function saveProjectAsync(
     try {
       const docRef = doc(db, COLLECTION_NAME, id);
       await setDoc(docRef, finalProject, { merge: true });
-      console.log("Successfully saved project to Firestore:", id);
     } catch (err) {
       console.error("Error saving project to Firestore:", err);
     }

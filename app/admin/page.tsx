@@ -168,8 +168,7 @@ export default function AdminPage() {
       title: "",
       description: "",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-      githubUrl: "",
-      liveUrl: "#",
+      url: "",
       featured: true,
     });
   };
@@ -367,31 +366,17 @@ export default function AdminPage() {
             {uploadMessage && <p className="text-xs text-[#209CEE] mt-1.5 font-medium">{uploadMessage}</p>}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                GitHub Bağlantısı (URL)
-              </label>
-              <input
-                type="text"
-                value={editingProject.githubUrl || ""}
-                onChange={(e) => setEditingProject({ ...editingProject, githubUrl: e.target.value })}
-                placeholder="https://github.com/muratbas/repo"
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#209CEE]"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                Canlı Demo Bağlantısı (URL)
-              </label>
-              <input
-                type="text"
-                value={editingProject.liveUrl || ""}
-                onChange={(e) => setEditingProject({ ...editingProject, liveUrl: e.target.value })}
-                placeholder="https://proje.com"
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#209CEE]"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+              Proje Bağlantısı (URL)
+            </label>
+            <input
+              type="text"
+              value={editingProject.url ?? editingProject.liveUrl ?? editingProject.githubUrl ?? ""}
+              onChange={(e) => setEditingProject({ ...editingProject, url: e.target.value })}
+              placeholder="https://... (Web sitesi adresi veya GitHub reposu)"
+              className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#209CEE]"
+            />
           </div>
 
           <div className="pt-4 flex items-center justify-end gap-3">
