@@ -6,7 +6,53 @@ import { getAllPostsAsync, savePostAsync, deletePostAsync } from "@/lib/blogStor
 import { getAllProjectsAsync, saveProjectAsync, deleteProjectAsync } from "@/lib/projectStore";
 import { BlogPost } from "@/lib/types/blog";
 import { ProjectItem } from "@/lib/types/project";
-import { storage } from "@/lib/firebase";
+import { storage, isFirebaseConfigured } from "@/lib/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+// Client-side image compressor (resizes photos to max 1200px and 80% JPEG quality)
+const compressImageFile = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target?.result as string;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 1200;
+        const MAX_HEIGHT = 1200;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height = Math.round((height * MAX_WIDTH) / width);
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width = Math.round((width * MAX_HEIGHT) / height);
+            height = MAX_HEIGHT;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.8);
+          resolve(compressedDataUrl);
+        } else {
+          resolve(event.target?.result as string);
+        }
+      };
+      img.onerror = (err) => reject(err);
+    };
+    reader.onerror = (err) => reject(err);
+  });
+};
 
 export default function AdminPage() {
   const [password, setPassword] = useState("");
@@ -148,7 +194,7 @@ export default function AdminPage() {
     loadProjects();
   };
 
-  // Helper image upload handler
+  // Helper image upload handler with fallback & client-side compression
   const handleImageUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     onComplete: (url: string) => void
@@ -156,29 +202,34 @@ export default function AdminPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setUploadMessage("Görsel yükleniyor...");
+    setUploadMessage("Görsel işleniyor...");
 
     try {
-      if (storage) {
-        const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
-        const storageRef = ref(storage, `uploads/${Date.now()}_${file.name}`);
-        await uploadBytes(storageRef, file);
-        const downloadUrl = await getDownloadURL(storageRef);
-        onComplete(downloadUrl);
-        setUploadMessage("Görsel Firebase Storage'a yüklendi!");
-      } else {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          if (event.target?.result) {
-            onComplete(event.target.result as string);
-            setUploadMessage("Görsel yüklendi.");
-          }
-        };
-        reader.readAsDataURL(file);
+      // 1. Compress image to a clean Data URL first
+      const compressedUrl = await compressImageFile(file);
+
+      // 2. Try Firebase Storage upload if configured
+      if (storage && isFirebaseConfigured) {
+        try {
+          setUploadMessage("Firebase Storage'a yükleniyor...");
+          const cleanFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
+          const storageRef = ref(storage, `uploads/${Date.now()}_${cleanFileName}`);
+          await uploadBytes(storageRef, file);
+          const downloadUrl = await getDownloadURL(storageRef);
+          onComplete(downloadUrl);
+          setUploadMessage("Görsel Firebase Storage'a başarıyla yüklendi!");
+          return;
+        } catch (storageErr) {
+          console.warn("Firebase Storage izni/bağlantısı yok. Optimize görsel Data URL olarak kaydediliyor:", storageErr);
+        }
       }
+
+      // 3. Fallback to optimized compressed Data URL
+      onComplete(compressedUrl);
+      setUploadMessage("Görsel optimize edilip yüklendi!");
     } catch (err) {
-      console.error(err);
-      setUploadMessage("Yükleme hatası.");
+      console.error("Image upload error:", err);
+      setUploadMessage("Görsel işleme hatası oluştu.");
     }
   };
 
