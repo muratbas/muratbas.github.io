@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { getAllProjectsAsync } from "@/lib/projectStore";
+import { getAllProjectsAsync, formatExternalUrl } from "@/lib/projectStore";
 import { ProjectItem } from "@/lib/types/project";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -46,7 +46,8 @@ export default function Projects() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedProjects.map((project) => {
-            const targetUrl = project.url || project.liveUrl || project.githubUrl;
+            const rawUrl = project.url || project.liveUrl || project.githubUrl;
+            const targetUrl = formatExternalUrl(rawUrl);
 
             return (
               <div
@@ -77,7 +78,7 @@ export default function Projects() {
 
                   {/* Single Main Action Bar */}
                   <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    {targetUrl && targetUrl !== "#" ? (
+                    {targetUrl ? (
                       <a
                         href={targetUrl}
                         target="_blank"

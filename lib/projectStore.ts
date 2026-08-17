@@ -13,6 +13,17 @@ const COLLECTION_NAME = "projects";
 
 const DEFAULT_PROJECTS: ProjectItem[] = [];
 
+// Helper to ensure URLs always start with https:// if not a relative or absolute URL
+export function formatExternalUrl(url?: string): string {
+  if (!url) return "";
+  const trimmed = url.trim();
+  if (!trimmed || trimmed === "#") return "";
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://") || trimmed.startsWith("//")) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+}
+
 export function getStoredProjects(): ProjectItem[] {
   if (typeof window === "undefined") return DEFAULT_PROJECTS;
   try {
@@ -58,10 +69,11 @@ export async function getAllProjectsAsync(): Promise<ProjectItem[]> {
       if (!snapshot.empty) {
         return snapshot.docs.map((docSnap) => {
           const data = docSnap.data() as ProjectItem;
+          const rawUrl = data.url || data.liveUrl || data.githubUrl || "";
           return {
             ...data,
             id: docSnap.id,
-            url: data.url || data.liveUrl || data.githubUrl || "",
+            url: formatExternalUrl(rawUrl),
           };
         });
       } else {
@@ -73,7 +85,7 @@ export async function getAllProjectsAsync(): Promise<ProjectItem[]> {
   }
   return getStoredProjects().map((p) => ({
     ...p,
-    url: p.url || p.liveUrl || p.githubUrl || "",
+    url: formatExternalUrl(p.url || p.liveUrl || p.githubUrl || ""),
   }));
 }
 
@@ -81,6 +93,10 @@ export async function saveProjectAsync(
   projectData: Partial<ProjectItem> & { title: string; description: string }
 ): Promise<ProjectItem> {
   const id = projectData.id || Date.now().toString();
+  const formattedUrl = formatExternalUrl(
+    projectData.url || projectData.liveUrl || projectData.githubUrl || ""
+  );
+
   const finalProject: ProjectItem = {
     id,
     title: projectData.title,
@@ -88,7 +104,7 @@ export async function saveProjectAsync(
     image:
       projectData.image ||
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-    url: projectData.url || "",
+    url: formattedUrl,
     featured: projectData.featured ?? true,
   };
 
