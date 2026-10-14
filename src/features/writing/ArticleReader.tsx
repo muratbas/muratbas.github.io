@@ -10,7 +10,7 @@ interface ArticleReaderProps {
 }
 
 export function ArticleReader({ article, onBack }: ArticleReaderProps) {
-  // Simple clean markdown parser for headings, lists, bold, and code blocks
+  // Render markdown content using Newsreader font for all text
   const renderContent = (content: string) => {
     const lines = content.trim().split("\n");
     const elements: React.ReactNode[] = [];
@@ -50,7 +50,7 @@ export function ArticleReader({ article, onBack }: ArticleReaderProps) {
         elements.push(
           <h3
             key={`h3-${index}`}
-            className="text-lg sm:text-xl font-bold tracking-tight text-neutral-900 mt-8 mb-4 uppercase"
+            className="font-newsreader text-xl sm:text-2xl font-bold text-neutral-900 mt-8 mb-4 tracking-normal"
           >
             {trimmed.replace("### ", "")}
           </h3>
@@ -59,20 +59,20 @@ export function ArticleReader({ article, onBack }: ArticleReaderProps) {
         elements.push(
           <h2
             key={`h2-${index}`}
-            className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 mt-10 mb-4 uppercase"
+            className="font-newsreader text-2xl sm:text-3xl font-bold text-neutral-900 mt-10 mb-4 tracking-normal"
           >
             {trimmed.replace("## ", "")}
           </h2>
         );
       } else if (trimmed.startsWith("- ")) {
         elements.push(
-          <li key={`li-${index}`} className="ml-5 list-disc text-neutral-700 text-sm sm:text-base my-1.5 leading-relaxed">
+          <li key={`li-${index}`} className="font-newsreader ml-6 list-disc text-neutral-800 text-base sm:text-lg my-2 leading-relaxed">
             {trimmed.replace("- ", "")}
           </li>
         );
       } else if (/^\d+\.\s/.test(trimmed)) {
         elements.push(
-          <li key={`oli-${index}`} className="ml-5 list-decimal text-neutral-700 text-sm sm:text-base my-1.5 leading-relaxed">
+          <li key={`oli-${index}`} className="font-newsreader ml-6 list-decimal text-neutral-800 text-base sm:text-lg my-2 leading-relaxed">
             {trimmed.replace(/^\d+\.\s/, "")}
           </li>
         );
@@ -80,7 +80,7 @@ export function ArticleReader({ article, onBack }: ArticleReaderProps) {
         elements.push(
           <p
             key={`p-${index}`}
-            className="text-sm sm:text-base text-neutral-700 leading-relaxed my-4"
+            className="font-newsreader text-base sm:text-lg text-neutral-800 leading-relaxed my-5"
           >
             {trimmed}
           </p>
@@ -96,40 +96,39 @@ export function ArticleReader({ article, onBack }: ArticleReaderProps) {
       <button
         type="button"
         onClick={onBack}
-        className="inline-flex items-center space-x-2 text-xs font-semibold tracking-[-0.02em] uppercase text-neutral-500 hover:text-blue-600 transition-colors mb-10 cursor-pointer"
+        className="font-newsreader inline-flex items-center space-x-2 text-sm text-neutral-500 hover:text-blue-600 transition-colors mb-10 cursor-pointer italic"
       >
         <ArrowLeftIcon className="w-4 h-4" />
-        <span>BACK TO ESSAYS</span>
+        <span>Back to Essays</span>
       </button>
 
-      <div className="flex items-center space-x-3 text-xs tracking-[-0.02em] uppercase text-neutral-400 mb-4">
-        <span>{article.date}</span>
-        <span>•</span>
-        <span>{article.readTime}</span>
-        <span>•</span>
-        <span className="text-neutral-900 font-semibold">{article.category}</span>
+      {/* Date only, in Newsreader italic */}
+      <div className="font-newsreader text-xs sm:text-sm text-neutral-400 mb-3 italic">
+        {article.date}
       </div>
 
-      <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-neutral-950 mb-8 leading-tight">
+      {/* Title keeps the custom font */}
+      <h1 className="font-sans text-2xl sm:text-4xl font-bold tracking-tight text-neutral-950 mb-8 leading-tight">
         {article.title}
       </h1>
 
       <div className="w-full h-[1px] bg-neutral-200 mb-8" />
 
-      <div className="prose prose-neutral max-w-none text-neutral-800">
+      {/* Article content in Newsreader font */}
+      <div className="max-w-none">
         {renderContent(article.content)}
       </div>
 
       <div className="w-full h-[1px] bg-neutral-200 mt-12 mb-8" />
 
-      <div className="flex justify-between items-center text-xs tracking-[-0.02em] uppercase text-neutral-500">
-        <span>MURAT BAŞ // WRITING</span>
+      <div className="font-newsreader flex justify-between items-center text-sm text-neutral-500">
+        <span>Murat Baş // Writing</span>
         <button
           type="button"
           onClick={onBack}
-          className="text-neutral-950 font-semibold hover:text-blue-600 transition-colors cursor-pointer"
+          className="text-neutral-950 font-medium hover:text-blue-600 transition-colors cursor-pointer"
         >
-          RETURN TO TOP ↑
+          Return to top ↑
         </button>
       </div>
     </article>

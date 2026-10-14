@@ -10,7 +10,6 @@ import { WorkDrawer } from "@/features/portfolio/WorkDrawer";
 import { Lightbox } from "@/features/portfolio/Lightbox";
 import { WritingList } from "@/features/writing/WritingList";
 import { AboutView } from "@/features/about/AboutView";
-import { ContactView } from "@/features/contact/ContactView";
 import { WORK_PROJECTS, VISUAL_ITEMS } from "@/features/portfolio/portfolio.data";
 import { WorkProject, VisualItem } from "@/features/portfolio/portfolio.types";
 
@@ -21,7 +20,7 @@ function PortfolioContent() {
   // Single Source of Truth: derive activeTab directly from URL searchParams
   const tabParam = searchParams.get("tab") as TabKey | null;
   const activeTab: TabKey =
-    tabParam && ["work", "visuals", "writing", "about", "contact"].includes(tabParam)
+    tabParam && ["work", "visuals", "writing", "about"].includes(tabParam)
       ? tabParam
       : "work";
 
@@ -77,8 +76,6 @@ function PortfolioContent() {
         {activeTab === "writing" && <WritingList />}
 
         {activeTab === "about" && <AboutView />}
-
-        {activeTab === "contact" && <ContactView />}
       </main>
 
       {/* Work Project Drawer / Modal */}

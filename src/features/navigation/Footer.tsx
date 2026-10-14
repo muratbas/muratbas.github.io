@@ -1,5 +1,5 @@
 import React from "react";
-import { GithubIcon, XIcon, InstagramIcon, MailIcon } from "@/components/ui/Icons";
+import { GithubIcon, InstagramIcon, MailIcon } from "@/components/ui/Icons";
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
       </div>
       <div className="flex items-center space-x-6 text-neutral-800">
         <a
-          href="https://github.com"
+          href="https://github.com/muratbas"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-blue-600 transition-colors p-1"
@@ -18,16 +18,7 @@ export function Footer() {
           <GithubIcon size={18} className="w-[18px] h-[18px]" />
         </a>
         <a
-          href="https://x.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-blue-600 transition-colors p-1"
-          aria-label="X / Twitter"
-        >
-          <XIcon size={16} className="w-4 h-4" />
-        </a>
-        <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/muuratbas/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-blue-600 transition-colors p-1"

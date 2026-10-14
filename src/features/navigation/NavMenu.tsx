@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export type TabKey = "work" | "visuals" | "writing" | "about" | "contact";
+export type TabKey = "work" | "visuals" | "writing" | "about";
 
 interface NavMenuProps {
   activeTab: TabKey;
@@ -14,7 +14,6 @@ const NAV_ITEMS: { key: TabKey; label: string }[] = [
   { key: "visuals", label: "VISUALS" },
   { key: "writing", label: "WRITING" },
   { key: "about", label: "ABOUT" },
-  { key: "contact", label: "CONTACT" },
 ];
 
 export function NavMenu({ activeTab, onTabChange }: NavMenuProps) {
@@ -37,6 +36,16 @@ export function NavMenu({ activeTab, onTabChange }: NavMenuProps) {
           </button>
         );
       })}
+
+      {/* CV Tab Link - Underlined & Opens PDF in New Tab */}
+      <a
+        href="/cv.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="py-1 text-sm sm:text-base md:text-[17px] tracking-[-0.02em] uppercase font-bold text-neutral-950 underline underline-offset-4 decoration-1 hover:text-blue-600 transition-colors cursor-pointer select-none opacity-100"
+      >
+        CV
+      </a>
     </nav>
   );
 }

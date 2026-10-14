@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Newsreader } from "next/font/google";
 import "./globals.css";
 
 const customFont = localFont({
   src: "./fonts/font.otf",
   variable: "--font-custom",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -41,9 +49,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${customFont.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${customFont.variable} ${newsreader.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#ffffff] text-neutral-900 selection:bg-neutral-900 selection:text-white font-sans">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col bg-[#ffffff] text-neutral-900 selection:bg-neutral-900 selection:text-white font-sans"
+      >
         {children}
       </body>
     </html>

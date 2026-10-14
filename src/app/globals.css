@@ -9,6 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-custom), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
 }
 
 body {
@@ -18,6 +19,11 @@ body {
   letter-spacing: -0.025em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.font-newsreader {
+  font-family: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  font-weight: 480;
 }
 
 a {
