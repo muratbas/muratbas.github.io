@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" />
+      <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5E7E" />
+      <stop offset="50%" stop-color="#FFA827" />
+      <stop offset="100%" stop-color="#FFDD00" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2CD4D9" />
+      <stop offset="50%" stop-color="#5B42F3" />
+      <stop offset="100%" stop-color="#FF3366" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD00" />
+      <stop offset="100%" stop-color="#FF4B4B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="#141416" />
+
+  <!-- Motif Artwork -->
+  
+      <g transform="translate(40, 40)">
+        <rect width="520" height="520" rx="20" fill="#202024" stroke="#333338" stroke-width="2" />
+        <!-- Terminal Top Bar -->
+        <circle cx="35" cy="35" r="8" fill="#FF5E7E" />
+        <circle cx="60" cy="35" r="8" fill="#FFA827" />
+        <circle cx="85" cy="35" r="8" fill="#2CD4D9" />
+        <!-- Retro Grid -->
+        <path d="M 30 200 L 490 200 M 30 280 L 490 280 M 30 360 L 490 360" stroke="#2C2C32" stroke-width="2" />
+        <path d="M 120 70 L 120 480 M 240 70 L 240 480 M 360 70 L 360 480" stroke="#2C2C32" stroke-width="2" />
+        <!-- Groovy Glyphs -->
+        <rect x="70" y="100" width="380" height="70" rx="10" fill="url(#grad3)" />
+        <text x="260" y="145" fill="#141416" font-family="monospace" font-size="18" font-weight="900" letter-spacing="5" text-anchor="middle">&gt; NEO_SHELL::GPU_V2</text>
+        <circle cx="260" cy="320" r="90" fill="#5B42F3" opacity="0.8" />
+        <circle cx="260" cy="320" r="60" fill="#2CD4D9" opacity="0.9" />
+        <circle cx="260" cy="320" r="30" fill="#FFDD00" />
+      </g>
+    
+
+  <!-- Grain Texture Overlay -->
+  <rect width="100%" height="100%" fill="transparent" filter="url(#grain)" opacity="0.8" pointer-events="none" />
+</svg>

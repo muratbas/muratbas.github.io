@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+  <defs>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" />
+      <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5E7E" />
+      <stop offset="50%" stop-color="#FFA827" />
+      <stop offset="100%" stop-color="#FFDD00" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2CD4D9" />
+      <stop offset="50%" stop-color="#5B42F3" />
+      <stop offset="100%" stop-color="#FF3366" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD00" />
+      <stop offset="100%" stop-color="#FF4B4B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="#20B2AA" />
+
+  <!-- Motif Artwork -->
+  
+      <!-- Moog archways and synth cabinet -->
+      <g transform="translate(50, 40)">
+        <rect width="500" height="670" rx="12" fill="#48D1CC" />
+        <!-- Archway Layers -->
+        <path d="M 90 280 A 160 160 0 0 1 410 280 V 550 H 90 Z" fill="#FF6347" />
+        <path d="M 130 280 A 120 120 0 0 1 370 280 V 550 H 130 Z" fill="#FFD700" />
+        <path d="M 170 280 A 80 80 0 0 1 330 280 V 550 H 170 Z" fill="#2E8B57" />
+        <circle cx="250" cy="200" r="40" fill="#9370DB" />
+        <circle cx="250" cy="200" r="20" fill="#FFFFFF" />
+        <!-- Butterfly / Sound Waves -->
+        <path d="M 220 400 Q 250 360 280 400 T 220 400" fill="#FFFFFF" />
+        <rect x="200" y="470" width="100" height="60" rx="6" fill="#1C1C1C" />
+        <circle cx="225" cy="500" r="10" fill="#FFD700" />
+        <circle cx="275" cy="500" r="10" fill="#FF6347" />
+      </g>
+    
+
+  <!-- Grain Texture Overlay -->
+  <rect width="100%" height="100%" fill="transparent" filter="url(#grain)" opacity="0.8" pointer-events="none" />
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" />
+      <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5E7E" />
+      <stop offset="50%" stop-color="#FFA827" />
+      <stop offset="100%" stop-color="#FFDD00" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2CD4D9" />
+      <stop offset="50%" stop-color="#5B42F3" />
+      <stop offset="100%" stop-color="#FF3366" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD00" />
+      <stop offset="100%" stop-color="#FF4B4B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="#FF7F50" />
+
+  <!-- Motif Artwork -->
+  
+      <!-- Piggy Bank on Platter with Money & Fruit -->
+      <g transform="translate(50, 40)">
+        <rect width="500" height="720" rx="12" fill="#FF6347" />
+        <circle cx="250" cy="280" r="140" fill="#FFD700" opacity="0.6" />
+        <!-- Platter Hand -->
+        <path d="M 380 680 C 350 560, 300 500, 250 490 L 250 460 L 100 460 L 100 490 C 180 500, 240 560, 280 680 Z" fill="#00BFFF" />
+        <!-- Silver Platter -->
+        <ellipse cx="250" cy="450" rx="180" ry="25" fill="#E6E6FA" stroke="#FFFFFF" stroke-width="4" />
+        <!-- Piggy Bank -->
+        <ellipse cx="250" cy="340" rx="110" ry="85" fill="#FFB6C1" stroke="#FF1493" stroke-width="4" />
+        <circle cx="170" cy="310" r="10" fill="#000000" />
+        <rect x="235" y="240" width="30" height="10" rx="5" fill="#FF1493" />
+        <circle cx="130" cy="420" r="18" fill="#32CD32" />
+        <circle cx="370" cy="420" r="18" fill="#9370DB" />
+      </g>
+    
+
+  <!-- Grain Texture Overlay -->
+  <rect width="100%" height="100%" fill="transparent" filter="url(#grain)" opacity="0.8" pointer-events="none" />
+</svg>

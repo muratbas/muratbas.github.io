@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" width="700" height="440">
+  <defs>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" />
+      <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5E7E" />
+      <stop offset="50%" stop-color="#FFA827" />
+      <stop offset="100%" stop-color="#FFDD00" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2CD4D9" />
+      <stop offset="50%" stop-color="#5B42F3" />
+      <stop offset="100%" stop-color="#FF3366" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD00" />
+      <stop offset="100%" stop-color="#FF4B4B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="#BA55D3" />
+
+  <!-- Motif Artwork -->
+  
+      <!-- Giant Fountain Pen writing on highway / paper -->
+      <g transform="translate(40, 30)">
+        <rect width="620" height="380" rx="12" fill="#8A2BE2" />
+        <circle cx="310" cy="140" r="100" fill="#FFD700" />
+        <path d="M 0 160 Q 200 80 400 160 T 620 160 L 620 380 L 0 380 Z" fill="#FF1493" />
+        <!-- Paper Highway -->
+        <polygon points="180,380 440,380 340,220 280,220" fill="#FFFFFF" />
+        <!-- Giant Pen -->
+        <line x1="480" y1="80" x2="310" y2="280" stroke="#1A1A1A" stroke-width="26" stroke-linecap="round" />
+        <polygon points="310,280 285,310 325,300" fill="#FFD700" />
+        <!-- Floral Clouds -->
+        <circle cx="120" cy="100" r="24" fill="#00CED1" />
+        <circle cx="150" cy="110" r="20" fill="#00CED1" />
+      </g>
+    
+
+  <!-- Grain Texture Overlay -->
+  <rect width="100%" height="100%" fill="transparent" filter="url(#grain)" opacity="0.8" pointer-events="none" />
+</svg>

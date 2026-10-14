@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 400" width="750" height="400">
+  <defs>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" />
+      <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5E7E" />
+      <stop offset="50%" stop-color="#FFA827" />
+      <stop offset="100%" stop-color="#FFDD00" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2CD4D9" />
+      <stop offset="50%" stop-color="#5B42F3" />
+      <stop offset="100%" stop-color="#FF3366" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD00" />
+      <stop offset="100%" stop-color="#FF4B4B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="#98FB98" />
+
+  <!-- Motif Artwork -->
+  
+      <!-- Face in Landscape with Sun & Pasture -->
+      <g transform="translate(50, 30)">
+        <rect width="650" height="340" rx="14" fill="#8FBC8F" />
+        <circle cx="325" cy="140" r="100" fill="#FFE4B5" />
+        <!-- Gentle Profile Hill -->
+        <path d="M 0 240 C 200 120, 240 180, 340 180 C 440 180, 500 120, 650 240 L 650 340 L 0 340 Z" fill="#2E8B57" />
+        <!-- Sun Rays -->
+        <line x1="325" y1="40" x2="325" y2="10" stroke="#FFD700" stroke-width="6" stroke-linecap="round" />
+        <line x1="250" y1="70" x2="225" y2="45" stroke="#FFD700" stroke-width="6" stroke-linecap="round" />
+        <line x1="400" y1="70" x2="425" y2="45" stroke="#FFD700" stroke-width="6" stroke-linecap="round" />
+        <circle cx="100" cy="280" r="18" fill="#FF69B4" />
+        <circle cx="550" cy="280" r="18" fill="#FF69B4" />
+      </g>
+    
+
+  <!-- Grain Texture Overlay -->
+  <rect width="100%" height="100%" fill="transparent" filter="url(#grain)" opacity="0.8" pointer-events="none" />
+</svg>

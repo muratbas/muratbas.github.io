@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.12 0" />
+      <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+    </filter>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5E7E" />
+      <stop offset="50%" stop-color="#FFA827" />
+      <stop offset="100%" stop-color="#FFDD00" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2CD4D9" />
+      <stop offset="50%" stop-color="#5B42F3" />
+      <stop offset="100%" stop-color="#FF3366" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFDD00" />
+      <stop offset="100%" stop-color="#FF4B4B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100%" height="100%" fill="#6AA84F" />
+
+  <!-- Motif Artwork -->
+  
+      <!-- MonoNeon psychedelic quilt landscape -->
+      <g transform="translate(40, 40)">
+        <rect width="520" height="520" rx="16" fill="#8FCE00" />
+        <path d="M 0 320 C 120 220, 400 220, 520 320 L 520 520 L 0 520 Z" fill="#38761D" />
+        <!-- Rainbow Arches -->
+        <circle cx="260" cy="200" r="140" fill="#FF007F" />
+        <circle cx="260" cy="200" r="110" fill="#FF9900" />
+        <circle cx="260" cy="200" r="80" fill="#FFFF00" />
+        <circle cx="260" cy="200" r="50" fill="#00E5FF" />
+        <circle cx="260" cy="200" r="25" fill="#9900FF" />
+        <!-- Lettering Block -->
+        <rect x="60" y="400" width="400" height="70" rx="8" fill="#FF007F" />
+        <text x="260" y="445" fill="#FFFFFF" font-family="'Impact', 'Arial Black', sans-serif" font-size="24" letter-spacing="3" text-anchor="middle">PUT ON EARTH FOR YOU</text>
+      </g>
+    
+
+  <!-- Grain Texture Overlay -->
+  <rect width="100%" height="100%" fill="transparent" filter="url(#grain)" opacity="0.8" pointer-events="none" />
+</svg>
