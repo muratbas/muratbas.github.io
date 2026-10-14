@@ -11,7 +11,7 @@
 - [x] Configure global blue link hover in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css)
 - [x] Integrate user's uploaded `Basteleur-Bold.otf` font via `next/font/local` in [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx)
 - [x] Change Contact tab to underlined `CV` tab with strictly normal font weight (`font-normal`, not bold), opening `/cv.pdf` in a new tab ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx))
-- [x] Implement forked sub-tabs (`ART` / `PHOTOS`) under `VISUALS` tab with URL-synced filtering ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx), [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx))
+- [x] Implement forked sub-tabs (`ART` / `PHOTOS`) anchored directly underneath the `VISUALS` tab (matching user screenshot) with URL-synced filtering ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx), [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx))
 - [x] Clicking `VISUALS` displays all items; clicking `ART` or `PHOTOS` isolates each category; clicking active sub-tab toggles back to all
 - [x] Categorize visual items into `art` and `photos` in [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts)
 - [x] Verify build, types, and linter (`npm run lint` and `npm run type-check` both passing with 0 errors, 0 warnings)

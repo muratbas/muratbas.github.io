@@ -26,11 +26,66 @@ export function NavMenu({
   onVisualFilterChange,
 }: NavMenuProps) {
   return (
-    <div className="flex flex-col items-center my-6 sm:my-8">
+    <div
+      className={`flex flex-col items-center mt-6 sm:mt-8 transition-[margin] duration-150 ${
+        activeTab === "visuals" ? "mb-12 sm:mb-14" : "mb-6 sm:mb-8"
+      }`}
+    >
       {/* Primary Navigation Menu */}
       <nav className="flex items-center justify-center flex-wrap gap-x-6 sm:gap-x-10 md:gap-x-12 gap-y-2">
         {NAV_ITEMS.map((item) => {
           const isActive = activeTab === item.key;
+
+          if (item.key === "visuals") {
+            return (
+              <div key={item.key} className="relative inline-flex flex-col items-center">
+                <button
+                  type="button"
+                  onClick={() => onTabChange("visuals")}
+                  className={`py-1 text-sm sm:text-base md:text-[17px] tracking-[-0.02em] uppercase transition-colors duration-150 cursor-pointer select-none opacity-100 ${
+                    isActive
+                      ? "text-neutral-950 font-bold hover:text-blue-600"
+                      : "text-neutral-900 font-normal hover:text-blue-600"
+                  }`}
+                >
+                  {item.label}
+                </button>
+
+                {/* Sub-fork directly under VISUALS: ART on left, PHOTOS on right */}
+                {activeTab === "visuals" && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-1 sm:pt-1.5 flex items-center justify-center gap-3.5 sm:gap-4 whitespace-nowrap animate-fadeIn select-none">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        onVisualFilterChange?.(visualFilter === "art" ? "all" : "art")
+                      }
+                      className={`py-0.5 text-xs sm:text-[13px] md:text-sm tracking-[-0.02em] uppercase transition-colors cursor-pointer ${
+                        visualFilter === "art"
+                          ? "font-bold text-neutral-950 underline underline-offset-4 decoration-1 hover:text-blue-600"
+                          : "font-normal text-neutral-500 hover:text-blue-600"
+                      }`}
+                    >
+                      ART
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        onVisualFilterChange?.(visualFilter === "photos" ? "all" : "photos")
+                      }
+                      className={`py-0.5 text-xs sm:text-[13px] md:text-sm tracking-[-0.02em] uppercase transition-colors cursor-pointer ${
+                        visualFilter === "photos"
+                          ? "font-bold text-neutral-950 underline underline-offset-4 decoration-1 hover:text-blue-600"
+                          : "font-normal text-neutral-500 hover:text-blue-600"
+                      }`}
+                    >
+                      PHOTOS
+                    </button>
+                  </div>
+                )}
+              </div>
+            );
+          }
+
           return (
             <button
               key={item.key}
@@ -57,39 +112,6 @@ export function NavMenu({
           CV
         </a>
       </nav>
-
-      {/* Visuals Sub-fork (ART / PHOTOS) */}
-      {activeTab === "visuals" && (
-        <div className="flex items-center justify-center space-x-6 sm:space-x-8 mt-3.5 animate-fadeIn select-none">
-          <button
-            type="button"
-            onClick={() =>
-              onVisualFilterChange?.(visualFilter === "art" ? "all" : "art")
-            }
-            className={`py-0.5 text-xs sm:text-sm tracking-[-0.02em] uppercase transition-colors cursor-pointer ${
-              visualFilter === "art"
-                ? "font-bold text-neutral-950 underline underline-offset-4 decoration-1 hover:text-blue-600"
-                : "font-normal text-neutral-500 hover:text-blue-600"
-            }`}
-          >
-            ART
-          </button>
-          <span className="text-neutral-300 text-xs select-none">/</span>
-          <button
-            type="button"
-            onClick={() =>
-              onVisualFilterChange?.(visualFilter === "photos" ? "all" : "photos")
-            }
-            className={`py-0.5 text-xs sm:text-sm tracking-[-0.02em] uppercase transition-colors cursor-pointer ${
-              visualFilter === "photos"
-                ? "font-bold text-neutral-950 underline underline-offset-4 decoration-1 hover:text-blue-600"
-                : "font-normal text-neutral-500 hover:text-blue-600"
-            }`}
-          >
-            PHOTOS
-          </button>
-        </div>
-      )}
     </div>
   );
 }
