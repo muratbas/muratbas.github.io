@@ -17,7 +17,7 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "murat baş — work & visuals",
+  title: "Murat Bas",
   description:
     "Personal portfolio of Murat Baş. Software engineering, high-performance web systems, visuals, and editorial writing.",
   keywords: [

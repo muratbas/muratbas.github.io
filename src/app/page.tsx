@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useMemo, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Header } from "@/features/navigation/Header";
 import { Footer } from "@/features/navigation/Footer";
-import { TabKey } from "@/features/navigation/NavMenu";
+import { TabKey, VisualFilter } from "@/features/navigation/NavMenu";
 import { MasonryGrid } from "@/features/portfolio/MasonryGrid";
 import { WorkDrawer } from "@/features/portfolio/WorkDrawer";
 import { Lightbox } from "@/features/portfolio/Lightbox";
@@ -17,12 +17,18 @@ function PortfolioContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Single Source of Truth: derive activeTab directly from URL searchParams
+  // Single Source of Truth: derive activeTab & visualFilter directly from URL searchParams
   const tabParam = searchParams.get("tab") as TabKey | null;
   const activeTab: TabKey =
     tabParam && ["work", "visuals", "writing", "about"].includes(tabParam)
       ? tabParam
       : "work";
+
+  const filterParam = searchParams.get("filter") as VisualFilter | null;
+  const visualFilter: VisualFilter =
+    filterParam && ["art", "photos"].includes(filterParam)
+      ? filterParam
+      : "all";
 
   const [selectedWork, setSelectedWork] = useState<WorkProject | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
@@ -33,8 +39,22 @@ function PortfolioContent() {
     router.push(url, { scroll: false });
   };
 
+  const handleVisualFilterChange = (filter: VisualFilter) => {
+    if (filter === "all") {
+      router.push("/?tab=visuals", { scroll: false });
+    } else {
+      router.push(`/?tab=visuals&filter=${filter}`, { scroll: false });
+    }
+  };
+
+  // Filter visual items based on active sub-filter
+  const filteredVisuals = useMemo(() => {
+    if (visualFilter === "all") return VISUAL_ITEMS;
+    return VISUAL_ITEMS.filter((item) => item.category === visualFilter);
+  }, [visualFilter]);
+
   const handleOpenVisual = (item: VisualItem) => {
-    const index = VISUAL_ITEMS.findIndex((v) => v.id === item.id);
+    const index = filteredVisuals.findIndex((v) => v.id === item.id);
     if (index !== -1) {
       setLightboxIndex(index);
       setIsLightboxOpen(true);
@@ -47,14 +67,19 @@ function PortfolioContent() {
     type: "work" as const,
   }));
 
-  const visualItems = VISUAL_ITEMS.map((visual) => ({
+  const visualItems = filteredVisuals.map((visual) => ({
     ...visual,
     type: "visual" as const,
   }));
 
   return (
     <div className="flex-1 flex flex-col justify-between w-full min-h-screen">
-      <Header activeTab={activeTab} onTabChange={handleTabChange} />
+      <Header
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+        visualFilter={visualFilter}
+        onVisualFilterChange={handleVisualFilterChange}
+      />
 
       <main className="flex-1 w-full">
         {activeTab === "work" && (
@@ -86,7 +111,7 @@ function PortfolioContent() {
 
       {/* Visuals Lightbox */}
       <Lightbox
-        items={VISUAL_ITEMS}
+        items={filteredVisuals}
         currentIndex={lightboxIndex}
         isOpen={isLightboxOpen}
         onClose={() => setIsLightboxOpen(false)}

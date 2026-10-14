@@ -23,5 +23,6 @@ export interface VisualItem {
   imageUrl: string;
   year: string;
   medium: string;
+  category: "art" | "photos";
   client?: string;
 }

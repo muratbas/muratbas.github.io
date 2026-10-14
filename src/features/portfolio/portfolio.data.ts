@@ -185,6 +185,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/future-of-finance.svg",
     year: "2025",
     medium: "Digital Vector, Stipple Grain & Acrylic",
+    category: "art",
     client: "Bloomberg Markets Magazine",
   },
   {
@@ -195,6 +196,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/midnight-psychedelic.svg",
     year: "2024",
     medium: "Screenprint & Risograph",
+    category: "art",
     client: "MIT Technology Review",
   },
   {
@@ -205,6 +207,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/austin-city-limits.svg",
     year: "2025",
     medium: "Silkscreen Print on Archival Paper",
+    category: "art",
     client: "Austin City Music Festival",
   },
   {
@@ -215,6 +218,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/put-on-earth.svg",
     year: "2024",
     medium: "Mixed Media & Halftone Screenprint",
+    category: "photos",
     client: "MonoNeon & Ghostly Intl",
   },
   {
@@ -225,6 +229,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/fungi-comm.svg",
     year: "2024",
     medium: "Digital Lithography & Texture",
+    category: "art",
     client: "Wired Magazine",
   },
   {
@@ -235,6 +240,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/analog-synthesis.svg",
     year: "2024",
     medium: "Vector Illustration & Analog Noise",
+    category: "photos",
     client: "Moog Sound Studio",
   },
   {
@@ -245,6 +251,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/spring-tour-poster.svg",
     year: "2025",
     medium: "Concert Poster Art & Type Layout",
+    category: "art",
     client: "GuruGuru Brain Records",
   },
   {
@@ -255,6 +262,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/mental-health.svg",
     year: "2024",
     medium: "Digital Painting & Airbrush Grain",
+    category: "photos",
     client: "One Medical Health",
   },
   {
@@ -265,6 +273,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/world-possibilities.svg",
     year: "2024",
     medium: "Editorial Illustration",
+    category: "art",
     client: "Dell Technologies",
   },
   {
@@ -275,6 +284,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/expensive-restaurants.svg",
     year: "2023",
     medium: "Collage & Color Separation",
+    category: "photos",
     client: "New York Magazine",
   },
   {
@@ -285,6 +295,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/writing-checks.svg",
     year: "2023",
     medium: "Editorial Ink & Digital Halftone",
+    category: "art",
     client: "The New York Times Book Review",
   },
   {
@@ -295,6 +306,7 @@ export const VISUAL_ITEMS: VisualItem[] = [
     imageUrl: "/images/visuals/bluebells-morning.svg",
     year: "2023",
     medium: "Botanical Psychedelia",
+    category: "photos",
     client: "Birdy Records",
   },
 ];
