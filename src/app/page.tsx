@@ -11,7 +11,7 @@ import { Lightbox } from "@/features/portfolio/Lightbox";
 import { WritingList } from "@/features/writing/WritingList";
 import { AboutView } from "@/features/about/AboutView";
 import { WORK_PROJECTS, VISUAL_ITEMS } from "@/features/portfolio/portfolio.data";
-import { WorkProject, VisualItem } from "@/features/portfolio/portfolio.types";
+import { WorkProject, VisualItem, AspectRatioType } from "@/features/portfolio/portfolio.types";
 
 function PortfolioContent() {
   const searchParams = useSearchParams();
@@ -61,9 +61,10 @@ function PortfolioContent() {
     }
   };
 
-  // Prepare items for MasonryGrid
+  // Prepare items for MasonryGrid (Work is fixed square, Visuals keep their masonry ratios)
   const workItems = WORK_PROJECTS.map((project) => ({
     ...project,
+    aspectRatio: (project.aspectRatio || "square") as AspectRatioType,
     type: "work" as const,
   }));
 

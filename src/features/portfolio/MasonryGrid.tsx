@@ -46,7 +46,7 @@ export function MasonryGrid({ items, onSelectWork, onSelectVisual }: MasonryGrid
         key={item.id}
         id={item.id}
         title={item.title}
-        aspectRatio={item.aspectRatio}
+        aspectRatio={item.aspectRatio || "square"}
         imageUrl={item.imageUrl}
         onClick={handleClick}
         priority={priority}

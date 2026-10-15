@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Article } from "./writing.types";
 import { ArrowLeftIcon } from "@/components/ui/Icons";
 
@@ -92,15 +93,29 @@ export function ArticleReader({ article, onBack }: ArticleReaderProps) {
   };
 
   return (
-    <article className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+    <article className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       <button
         type="button"
         onClick={onBack}
-        className="font-newsreader inline-flex items-center space-x-2 text-sm text-neutral-500 hover:text-blue-600 transition-colors mb-10 cursor-pointer italic"
+        className="font-newsreader inline-flex items-center space-x-2 text-sm text-neutral-500 hover:text-blue-600 transition-colors mb-8 cursor-pointer italic"
       >
         <ArrowLeftIcon className="w-4 h-4" />
         <span>Back to Essays</span>
       </button>
+
+      {/* Header Image directly above title */}
+      {article.headerImage && (
+        <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] mb-8 overflow-hidden bg-neutral-100 border border-neutral-200/60">
+          <Image
+            src={article.headerImage}
+            alt={article.title}
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="(max-width: 768px) 100vw, 800px"
+          />
+        </div>
+      )}
 
       {/* Date only, in Newsreader italic */}
       <div className="font-newsreader text-xs sm:text-sm text-neutral-400 mb-3 italic">

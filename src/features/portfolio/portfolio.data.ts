@@ -2,10 +2,10 @@ import { WorkProject, VisualItem } from "./portfolio.types";
 
 export const WORK_PROJECTS: WorkProject[] = [
   {
-    id: "canvas-studio",
-    title: "CANVAS STUDIO",
-    aspectRatio: "portrait",
-    imageUrl: "/images/work/canvas-studio.svg",
+    id: "omu-forum",
+    title: "OMU FORUM",
+    aspectRatio: "square",
+    imageUrl: "/images/work/omuf.png",
     description:
       "A high-performance generative UI and canvas layout engine built for creative coders and editorial designers. Features real-time AST manipulation, infinite canvas rendering with WebGL acceleration, and parametric grid synthesis.",
     stack: ["Next.js 15", "TypeScript", "WebGL 2", "Web Workers", "Tailwind CSS"],
@@ -14,22 +14,10 @@ export const WORK_PROJECTS: WorkProject[] = [
     year: "2026",
   },
   {
-    id: "chrono-db",
-    title: "CHRONO ENGINE",
-    aspectRatio: "tall",
-    imageUrl: "/images/work/chrono-db.svg",
-    description:
-      "Ultra-low latency columnar time-series storage and real-time query interface with streaming aggregate pipelines and vectorized execution.",
-    stack: ["Rust", "TypeScript", "Wasm", "Tailwind CSS", "ClickHouse"],
-    liveUrl: "https://example.com/chrono-db",
-    githubUrl: "https://github.com/example/chrono-db",
-    year: "2025",
-  },
-  {
-    id: "prism-tokens",
-    title: "PRISM SYSTEM",
-    aspectRatio: "landscape",
-    imageUrl: "/images/work/prism-tokens.svg",
+    id: "time-is-up",
+    title: "TIME IS UP",
+    aspectRatio: "square",
+    imageUrl: "/images/work/timeisup.png",
     description:
       "Multi-platform design token engine that compiles Figma variables and W3C DTCG specs into type-safe CSS, iOS Swift, and Android Jetpack Compose definitions.",
     stack: ["TypeScript", "Node.js", "Oklch Color Math", "Tailwind CSS"],
@@ -38,10 +26,10 @@ export const WORK_PROJECTS: WorkProject[] = [
     year: "2025",
   },
   {
-    id: "neo-terminal",
-    title: "NEO TERMINAL",
+    id: "carsamba-pide",
+    title: "TARIHI CARSAMBA PIDE",
     aspectRatio: "square",
-    imageUrl: "/images/work/neo-terminal.svg",
+    imageUrl: "/images/work/pide.png",
     description:
       "A distraction-free, terminal-first development environment featuring split multiplexing, integrated AI diff inspect, and GPU glyph atlas rendering.",
     stack: ["Rust", "WebGPU", "TypeScript", "Tailwind CSS"],
@@ -50,65 +38,17 @@ export const WORK_PROJECTS: WorkProject[] = [
     year: "2025",
   },
   {
-    id: "hyper-audio",
-    title: "AURA SYNTHESIZER",
-    aspectRatio: "wide",
-    imageUrl: "/images/work/hyper-audio.svg",
+    id: "tubify",
+    title: "TUBIFY",
+    aspectRatio: "square",
+    imageUrl: "/images/work/tubify.png",
     description:
       "A patchable modular sound synthesis engine running inside the browser via AudioWorklet and SIMD WebAssembly. Features vintage analog ladder filters and wavetable oscillators.",
     stack: ["WebAudio API", "AudioWorklet", "Wasm C++", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://example.com/aura",
     githubUrl: "https://github.com/example/aura",
     year: "2024",
-  },
-  {
-    id: "metric-flow",
-    title: "METRIC FLOW",
-    aspectRatio: "tall",
-    imageUrl: "/images/work/metric-flow.svg",
-    description:
-      "Enterprise telemetry aggregation pipeline and visual trace explorer, providing millisecond-level distributed trace waterfalls for microservice architectures.",
-    stack: ["Go", "Next.js", "TypeScript", "Tailwind CSS", "eBPF"],
-    liveUrl: "https://example.com/metric-flow",
-    githubUrl: "https://github.com/example/metric-flow",
-    year: "2024",
-  },
-  {
-    id: "solaris-os",
-    title: "SOLARIS",
-    aspectRatio: "portrait",
-    imageUrl: "/images/work/solaris-os.svg",
-    description:
-      "An experimental web-native desktop environment inspired by 1970s mainframe terminals and Dieter Rams industrial design. Features window tiling, virtual filesystems, and custom shell.",
-    stack: ["Next.js 15", "TypeScript", "Tailwind CSS", "IndexedDB"],
-    liveUrl: "https://example.com/solaris",
-    githubUrl: "https://github.com/example/solaris",
-    year: "2024",
-  },
-  {
-    id: "zenith-mail",
-    title: "ZENITH",
-    aspectRatio: "square",
-    imageUrl: "/images/work/zenith-mail.svg",
-    description:
-      "A fast, distraction-free email client designed for ultra-high throughput triage with full offline-first synchronization and natural language filtering.",
-    stack: ["React 19", "TypeScript", "Wasm SQLite", "Tailwind CSS"],
-    liveUrl: "https://example.com/zenith",
-    githubUrl: "https://github.com/example/zenith",
-    year: "2023",
-  },
-  {
-    id: "strata-cms",
-    title: "STRATA",
-    aspectRatio: "landscape",
-    imageUrl: "/images/work/strata-cms.svg",
-    description:
-      "A minimalist headless CMS and digital asset repository for publishing houses and museums with semantic tagging and image optimization pipelines.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
-    liveUrl: "https://example.com/strata",
-    githubUrl: "https://github.com/example/strata",
-    year: "2023",
-  },
+  }
 ];
 
 export const VISUAL_ITEMS: VisualItem[] = [

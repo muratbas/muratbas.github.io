@@ -3,7 +3,7 @@ export type AspectRatioType = "tall" | "portrait" | "square" | "landscape" | "wi
 export interface WorkProject {
   id: string;
   title: string;
-  aspectRatio: AspectRatioType;
+  aspectRatio?: AspectRatioType;
   imageUrl: string;
   description: string;
   stack: string[];
