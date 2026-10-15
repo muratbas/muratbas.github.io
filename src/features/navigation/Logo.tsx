@@ -11,10 +11,10 @@ export function Logo({ className = "" }: LogoProps) {
       <Image
         src="/logo.png"
         alt="murat bas."
-        width={1000}
-        height={400}
+        width={930}
+        height={127}
         priority
-        className="w-64 sm:w-80 md:w-[380px] lg:w-[440px] h-auto object-contain"
+        className="w-72 sm:w-96 md:w-[460px] lg:w-[540px] h-auto object-contain"
       />
     </div>
   );

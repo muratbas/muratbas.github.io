@@ -3,7 +3,6 @@
 ## Current Session: Kate Dehler Style Personal Portfolio Build
 
 ### Completed
-
 - [x] Replace header logo with uploaded `logo.png` and enlarge display size ([`Logo.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Logo.tsx))
 - [x] Enlarge nav tabs, set default opacity to 100%, and apply blue hover (`hover:text-blue-600`) across all links ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx))
 - [x] Remove scale/zoom effect on card hover and add translucent white overlay ([`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx))
@@ -19,13 +18,10 @@
 - [x] Rename `Technologies & Infrastructure` header to `Tech stack` ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx))
 - [x] Set `VIEW LIVE PROJECT` button hover to sleek dark neutral (`hover:bg-neutral-800 hover:text-white`), keeping it dark and preventing blue color glitch ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx))
 - [x] Remove `subtitle` completely from portfolio data, interfaces, cards, and lightbox ([`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx), [`MasonryGrid.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MasonryGrid.tsx), [`Lightbox.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/Lightbox.tsx))
-- [x] Update logo component with new red canvas logo asset, updating dimensions to 1000x400 ([`Logo.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Logo.tsx), [`public/logo.png`](file:///c:/Projeler/portfolyowebsite/public/logo.png))
 - [x] Verify build, types, and linter (`npm run lint` and `npm run type-check` both passing with 0 errors, 0 warnings)
 
 ### Blockers / Known Issues
-
 - None.
 
 ### Next Steps
-
 - Await next feature or feedback from user.
