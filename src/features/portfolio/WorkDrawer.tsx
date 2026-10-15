@@ -83,16 +83,6 @@ export function WorkDrawer({ project, onClose }: WorkDrawerProps) {
             />
           </div>
 
-          {/* Subtitle & Role */}
-          <div className="mb-6 flex flex-wrap gap-y-2 gap-x-6 text-xs sm:text-[13px] tracking-[-0.02em] uppercase text-neutral-600">
-            <div>
-              <span className="text-neutral-400">Context:</span> {project.subtitle}
-            </div>
-            <div>
-              <span className="text-neutral-400">Role:</span> {project.role}
-            </div>
-          </div>
-
           {/* Description */}
           <div className="mb-8">
             <h3 className="text-xs font-bold uppercase tracking-[-0.02em] text-neutral-400 mb-2">
@@ -103,28 +93,10 @@ export function WorkDrawer({ project, onClose }: WorkDrawerProps) {
             </p>
           </div>
 
-          {/* Architecture Details */}
-          <div className="mb-8">
-            <h3 className="text-xs font-bold uppercase tracking-[-0.02em] text-neutral-400 mb-3">
-              Engineering Architecture
-            </h3>
-            <ul className="space-y-2.5">
-              {project.architecture.map((item, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start text-xs sm:text-sm text-neutral-700 leading-normal"
-                >
-                  <span className="text-neutral-400 mr-2.5 select-none">—</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Tech Stack Pills */}
           <div className="mb-8">
             <h3 className="text-xs font-bold uppercase tracking-[-0.02em] text-neutral-400 mb-3">
-              Technologies & Infrastructure
+              Tech stack
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.stack.map((tech) => (
@@ -146,7 +118,7 @@ export function WorkDrawer({ project, onClose }: WorkDrawerProps) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center space-x-2 py-3 px-4 bg-neutral-950 text-white text-xs font-semibold tracking-tight uppercase hover:bg-blue-600 transition-colors"
+              className="flex-1 inline-flex items-center justify-center space-x-2 py-3 px-4 bg-neutral-950 text-white text-xs font-semibold tracking-tight uppercase hover:bg-neutral-800 hover:text-white transition-colors"
             >
               <span>VIEW LIVE PROJECT</span>
               <ExternalLinkIcon className="w-4 h-4" />

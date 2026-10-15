@@ -14,10 +14,14 @@
 - [x] Implement forked sub-tabs (`ART` / `PHOTOS`) anchored directly underneath the `VISUALS` tab (matching user screenshot) with URL-synced filtering ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx), [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx))
 - [x] Clicking `VISUALS` displays all items; clicking `ART` or `PHOTOS` isolates each category; clicking active sub-tab toggles back to all
 - [x] Categorize visual items into `art` and `photos` in [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts)
+- [x] Remove `context`, `role`, and `engineering Architecture` sections from Work modal ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts))
+- [x] Rename `Technologies & Infrastructure` header to `Tech stack` ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx))
+- [x] Set `VIEW LIVE PROJECT` button hover to sleek dark neutral (`hover:bg-neutral-800 hover:text-white`), keeping it dark and preventing blue color glitch ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx))
+- [x] Remove `subtitle` completely from portfolio data, interfaces, cards, and lightbox ([`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx), [`MasonryGrid.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MasonryGrid.tsx), [`Lightbox.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/Lightbox.tsx))
 - [x] Verify build, types, and linter (`npm run lint` and `npm run type-check` both passing with 0 errors, 0 warnings)
 
 ### Blockers / Known Issues
 - None.
 
 ### Next Steps
-- Await user feedback on interaction and visual styling.
+- Await next feature or feedback from user.

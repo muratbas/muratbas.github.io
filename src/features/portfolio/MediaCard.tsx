@@ -7,7 +7,6 @@ import { AspectRatioType } from "./portfolio.types";
 interface MediaCardProps {
   id: string;
   title: string;
-  subtitle: string;
   aspectRatio: AspectRatioType;
   imageUrl: string;
   onClick: () => void;
@@ -24,7 +23,6 @@ const ASPECT_RATIO_CLASSES: Record<AspectRatioType, string> = {
 
 export function MediaCard({
   title,
-  subtitle,
   aspectRatio,
   imageUrl,
   onClick,
@@ -38,7 +36,7 @@ export function MediaCard({
         type="button"
         onClick={onClick}
         className="w-full text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 rounded-sm"
-        aria-label={`${title} - ${subtitle}`}
+        aria-label={title}
       >
         {/* Zero-border, zero-shadow image canvas without zoom scale */}
         <div className={`relative w-full overflow-hidden bg-white ${aspectClass}`}>
@@ -58,7 +56,7 @@ export function MediaCard({
         {/* Minimal centered caption with tight letter spacing */}
         <div className="mt-2.5 sm:mt-3 px-1 text-center">
           <p className="text-xs sm:text-[13px] font-medium tracking-[-0.025em] uppercase text-neutral-900 group-hover:text-blue-600 transition-colors duration-150 leading-snug">
-            {title} - {subtitle}
+            {title}
           </p>
         </div>
       </button>

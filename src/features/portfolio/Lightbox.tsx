@@ -124,7 +124,7 @@ export function Lightbox({
           {currentItem.title}
         </h3>
         <p className="mt-1 text-xs tracking-[-0.02em] uppercase text-neutral-400">
-          {currentItem.subtitle} {currentItem.client && `• ${currentItem.client}`} • {currentItem.medium} ({currentItem.year})
+          {currentItem.client ? `${currentItem.client} • ` : ""}{currentItem.medium} ({currentItem.year})
         </p>
       </div>
     </div>

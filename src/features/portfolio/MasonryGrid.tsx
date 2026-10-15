@@ -46,7 +46,6 @@ export function MasonryGrid({ items, onSelectWork, onSelectVisual }: MasonryGrid
         key={item.id}
         id={item.id}
         title={item.title}
-        subtitle={item.subtitle}
         aspectRatio={item.aspectRatio}
         imageUrl={item.imageUrl}
         onClick={handleClick}
