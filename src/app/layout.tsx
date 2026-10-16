@@ -17,9 +17,12 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Murat Bas",
+  title: "muratbas.com",
   description:
-    "Personal portfolio of Murat Baş. Software engineering, high-performance web systems, visuals, and editorial writing.",
+    "Hi, I'm Murat and I create things. Based in Samsun, Turkiye.",
+  icons: {
+    icon: "/favicon.ico",
+  },
   keywords: [
     "Murat Baş",
     "Portfolio",

@@ -23,6 +23,7 @@
 - [x] Add optional essay banner image (`headerImage`) support directly above the title in [`ArticleReader.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/ArticleReader.tsx) (matching GameInformer editorial style)
 - [x] Remove `category` property completely from [`writing.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/writing/writing.types.ts) and [`writing.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/writing/writing.data.ts)
 - [x] Configure Work tab to enforce fixed square (`aspect-square`) cards across all projects ([`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx), [`MasonryGrid.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MasonryGrid.tsx), [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts))
+- [x] Configure user's custom `favicon.ico` in [`src/app/favicon.ico`](file:///c:/Projeler/portfolyowebsite/src/app/favicon.ico), [`public/favicon.ico`](file:///c:/Projeler/portfolyowebsite/public/favicon.ico), and [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx)
 - [x] Verify build, types, and linter (`npm run lint` and `npm run type-check` both passing with 0 errors, 0 warnings)
 
 ### Blockers / Known Issues
