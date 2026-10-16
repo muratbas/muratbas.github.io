@@ -6,12 +6,13 @@ import { Header } from "@/features/navigation/Header";
 import { Footer } from "@/features/navigation/Footer";
 import { TabKey, VisualFilter } from "@/features/navigation/NavMenu";
 import { MasonryGrid } from "@/features/portfolio/MasonryGrid";
+import { WorkList } from "@/features/portfolio/WorkList";
 import { WorkDrawer } from "@/features/portfolio/WorkDrawer";
 import { Lightbox } from "@/features/portfolio/Lightbox";
 import { WritingList } from "@/features/writing/WritingList";
 import { AboutView } from "@/features/about/AboutView";
-import { WORK_PROJECTS, VISUAL_ITEMS } from "@/features/portfolio/portfolio.data";
-import { WorkProject, VisualItem, AspectRatioType } from "@/features/portfolio/portfolio.types";
+import { VISUAL_ITEMS } from "@/features/portfolio/portfolio.data";
+import { WorkProject, VisualItem } from "@/features/portfolio/portfolio.types";
 
 function PortfolioContent() {
   const searchParams = useSearchParams();
@@ -61,13 +62,6 @@ function PortfolioContent() {
     }
   };
 
-  // Prepare items for MasonryGrid (Work is fixed square, Visuals keep their masonry ratios)
-  const workItems = WORK_PROJECTS.map((project) => ({
-    ...project,
-    aspectRatio: (project.aspectRatio || "square") as AspectRatioType,
-    type: "work" as const,
-  }));
-
   const visualItems = filteredVisuals.map((visual) => ({
     ...visual,
     type: "visual" as const,
@@ -84,11 +78,7 @@ function PortfolioContent() {
 
       <main className="flex-1 w-full">
         {activeTab === "work" && (
-          <MasonryGrid
-            items={workItems}
-            onSelectWork={(project) => setSelectedWork(project)}
-            onSelectVisual={() => {}}
-          />
+          <WorkList onSelectWork={(project) => setSelectedWork(project)} />
         )}
 
         {activeTab === "visuals" && (

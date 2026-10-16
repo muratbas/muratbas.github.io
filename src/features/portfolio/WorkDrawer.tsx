@@ -51,12 +51,9 @@ export function WorkDrawer({ project, onClose }: WorkDrawerProps) {
           {/* Top Header & Close button */}
           <div className="flex items-center justify-between pb-6 border-b border-neutral-200/80">
             <div>
-              <span className="text-[11px] sm:text-xs font-semibold tracking-[-0.02em] uppercase text-neutral-500">
-                CASE STUDY // {project.year}
-              </span>
               <h2
                 id="drawer-title"
-                className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 mt-1 uppercase"
+                className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950 uppercase"
               >
                 {project.title}
               </h2>

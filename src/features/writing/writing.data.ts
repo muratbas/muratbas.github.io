@@ -7,7 +7,7 @@ export const ARTICLES: Article[] = [
     date: "15 OCTOBER 2026",
     headerImage: "/images/visuals/bridge.webp",
     excerpt:
-      "Amerikan rüyasının peşinden gitmek istemem ve düşüncelerim.",
+      "Mezun oldum, evdeyim, çalışıyorum, boşluktayım ama galiba gitmek istiyorum.",
     content: `
     Bilgisayar programcılığından mezun olalı biraz zaman oldu ve bu sürede kendimi solo projelere adamıştım. Üniversite bittikten sonra içime sık sık düşen o boşluk hissi tekrar geldi. Mezun oldum ve hemen yarın başlayacak sabit bir işim yok. Gelecek kaygısı. Eh zaten bunun olacağını fark ediyorsun kaçışın yok. Sabah uyanıyorsun, bir şeyler yapman, bir yerlerden başlaman lazım ama o motivasyonun da artık kaybolmaya başlıyor.
 
