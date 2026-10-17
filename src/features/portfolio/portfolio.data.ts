@@ -30,6 +30,35 @@ export const WORK_PROJECTS: WorkProject[] = [
         type: "image",
       }
     ],
+  },
+  {
+    id: "omu",
+    title: "Omu Forum",
+    aspectRatio: "square",
+    imageUrl: "/images/work/omuforum.png",
+    description: "University forum website",
+    longDescription: [
+      "It is a forum website for the Ondokuz Mayıs University community, where students and faculty members can communicate with each other."
+    ],
+    stack: ["Next.js", "Typescript", "Tailwind CSS"],
+    liveUrl: "https://omu.muratbas.com",
+    githubUrl: "https://github.com/muratbas/tubify",
+    year: "2025",
+    theme: {
+      bg: "#F9FBFE",
+      sheetBg: "#E9EDF6",
+      accent: "#e43232ff",
+      text: "#0D1B3A",
+      selectionBg: "#e43232ff",
+      selectionText: "#ffffff",
+    },
+    media: [
+      {
+        url: "/images/work/omuforum.png",
+        caption: "Omu Forum",
+        type: "image",
+      }
+    ],
   }
 ];
 
