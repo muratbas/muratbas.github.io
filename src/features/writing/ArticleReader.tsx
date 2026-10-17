@@ -122,8 +122,8 @@ export function ArticleReader({ article, onBack }: ArticleReaderProps) {
         {article.date}
       </div>
 
-      {/* Title keeps the custom font */}
-      <h1 className="font-sans text-2xl sm:text-4xl font-bold tracking-tight text-neutral-950 mb-8 leading-tight">
+      {/* Title in Urbanist font */}
+      <h1 className="font-urbanist text-2xl sm:text-4xl font-bold tracking-tight text-[#2d2a24] mb-8 leading-tight">
         {article.title}
       </h1>
 

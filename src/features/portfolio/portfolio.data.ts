@@ -3,51 +3,73 @@ import { WorkProject, VisualItem } from "./portfolio.types";
 export const WORK_PROJECTS: WorkProject[] = [
   {
     id: "omu-forum",
-    title: "OMU FORUM",
+    title: "Omu Forum",
     aspectRatio: "square",
     imageUrl: "/images/work/omuf.png",
-    description:
-      "A high-performance generative UI and canvas layout engine built for creative coders and editorial designers. Features real-time AST manipulation, infinite canvas rendering with WebGL acceleration, and parametric grid synthesis.",
-    stack: ["Next.js 15", "TypeScript", "WebGL 2", "Web Workers", "Tailwind CSS"],
-    liveUrl: "https://example.com/canvas-studio",
-    githubUrl: "https://github.com/example/canvas-studio",
-    year: "2026",
-  },
-  {
-    id: "time-is-up",
-    title: "TIME IS UP",
-    aspectRatio: "square",
-    imageUrl: "/images/work/timeisup.png",
-    description:
-      "Multi-platform design token engine that compiles Figma variables and W3C DTCG specs into type-safe CSS, iOS Swift, and Android Jetpack Compose definitions.",
-    stack: ["TypeScript", "Node.js", "Oklch Color Math", "Tailwind CSS"],
-    liveUrl: "https://example.com/prism",
-    githubUrl: "https://github.com/example/prism",
+    description: "Multiplayer Strategy Game",
+    longDescription: [
+      "CubeWar is a browser-based multiplayer game where players control cube avatars in fast-paced strategic battles.",
+      "I built the full stack myself, including the game engine, the client-side timeline system, and real-time networking with Redis-based matchmaking for smooth, high-concurrency gameplay."
+    ],
+    stack: ["Three.js", "Node.js", "WebSockets", "Redis"],
+    liveUrl: "https://omu.muratbas.com",
+    githubUrl: "https://github.com/muratbas/samsun-forum",
     year: "2025",
-  },
-  {
-    id: "carsamba-pide",
-    title: "TARIHI CARSAMBA PIDE",
-    aspectRatio: "square",
-    imageUrl: "/images/work/pide.png",
-    description:
-      "A distraction-free, terminal-first development environment featuring split multiplexing, integrated AI diff inspect, and GPU glyph atlas rendering.",
-    stack: ["Rust", "WebGPU", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://example.com/neo-terminal",
-    githubUrl: "https://github.com/example/neo-terminal",
-    year: "2025",
+    theme: {
+      bg: "#1e2d42",
+      sheetBg: "#283b54",
+      accent: "#0091ff",
+      text: "#ffffff",
+      selectionBg: "#0091ff",
+      selectionText: "#ffffff",
+    },
+    media: [
+      {
+        url: "/images/work/omuf.png",
+        caption: "Tutorial",
+        type: "image",
+      },
+      {
+        url: "/images/work/pide.png",
+        caption: "Map Themes",
+        type: "image",
+      },
+    ],
   },
   {
     id: "tubify",
-    title: "TUBIFY",
+    title: "Tubify",
     aspectRatio: "square",
-    imageUrl: "/images/work/tubify.png",
-    description:
-      "A patchable modular sound synthesis engine running inside the browser via AudioWorklet and SIMD WebAssembly. Features vintage analog ladder filters and wavetable oscillators.",
-    stack: ["WebAudio API", "AudioWorklet", "Wasm C++", "TypeScript", "Tailwind CSS"],
+    imageUrl: "/images/work/banner-tubify.png",
+    description: "Native Youtube Music",
+    longDescription: [
+      "A distraction-free native desktop music player interfacing with YouTube Music API with seamless audio streaming and zero advertisement latency.",
+      "Features background audio playback, local offline caching, and responsive GPU audio visualizer waveforms built with high performance and minimal memory footprint."
+    ],
+    stack: ["Rust", "WebAudio", "Tauri", "Tailwind CSS"],
     liveUrl: "https://example.com/aura",
-    githubUrl: "https://github.com/example/aura",
-    year: "2024",
+    githubUrl: "https://github.com/muratbas/tubify",
+    year: "2026",
+    theme: {
+      bg: "#121713",
+      sheetBg: "#1a231c",
+      accent: "#10b981",
+      text: "#ffffff",
+      selectionBg: "#10b981",
+      selectionText: "#ffffff",
+    },
+    media: [
+      {
+        url: "/images/work/banner-tubify.png",
+        caption: "Audio Player & Queue",
+        type: "image",
+      },
+      {
+        url: "/images/work/timeisup.png",
+        caption: "Equalizer & Visualizer",
+        type: "image",
+      },
+    ],
   }
 ];
 

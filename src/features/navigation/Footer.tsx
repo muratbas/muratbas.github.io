@@ -3,11 +3,11 @@ import { GithubIcon, InstagramIcon, MailIcon } from "@/components/ui/Icons";
 
 export function Footer() {
   return (
-    <footer className="w-full mt-24 pb-12 pt-8 border-t border-neutral-100 flex flex-col sm:flex-row items-center justify-between text-xs tracking-[-0.02em] uppercase text-neutral-500 max-w-7xl mx-auto px-4 sm:px-8 gap-4">
+    <footer className="w-full mt-24 pb-12 pt-8 border-t border-neutral-300/50 flex flex-col sm:flex-row items-center justify-between text-xs tracking-[-0.02em] uppercase text-[#2d2a24]/60 max-w-7xl mx-auto px-4 sm:px-8 gap-4">
       <div>
-        <span> Copyright Murat Baş 2026</span>
+        <span> © 2026 Murat Bas</span>
       </div>
-      <div className="flex items-center space-x-6 text-neutral-800">
+      <div className="flex items-center space-x-6 text-[#2d2a24]">
         <a
           href="https://github.com/muratbas"
           target="_blank"

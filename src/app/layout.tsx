@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Newsreader } from "next/font/google";
+import { Newsreader, Urbanist } from "next/font/google";
 import "./globals.css";
 
 const customFont = localFont({
@@ -16,8 +16,14 @@ const newsreader = Newsreader({
   display: "swap",
 });
 
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  variable: "--font-urbanist",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "muratbas.com",
+  title: "Murat Bas",
   description:
     "Hi, I'm Murat and I create things. Based in Samsun, Turkiye.",
   icons: {
@@ -53,11 +59,11 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${customFont.variable} ${newsreader.variable} h-full antialiased`}
+      className={`${customFont.variable} ${newsreader.variable} ${urbanist.variable} h-full antialiased bg-[#F5EFE6]`}
     >
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col bg-[#ffffff] text-neutral-900 selection:bg-neutral-900 selection:text-white font-sans"
+        className="min-h-full flex flex-col bg-[#F5EFE6] text-[#2d2a24] selection:bg-[#2d2a24] selection:text-white font-sans"
       >
         {children}
       </body>

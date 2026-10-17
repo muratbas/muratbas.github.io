@@ -44,8 +44,8 @@ export function NavMenu({
                   onClick={() => onTabChange("visuals")}
                   className={`py-1 text-sm sm:text-base md:text-[17px] tracking-[-0.02em] uppercase transition-colors duration-150 cursor-pointer select-none opacity-100 ${
                     isActive
-                      ? "text-neutral-950 font-bold hover:text-blue-600"
-                      : "text-neutral-900 font-normal hover:text-blue-600"
+                      ? "text-[#2d2a24] font-bold hover:text-blue-600"
+                      : "text-[#2d2a24] font-normal hover:text-blue-600"
                   }`}
                 >
                   {item.label}
@@ -61,8 +61,8 @@ export function NavMenu({
                       }
                       className={`py-0.5 text-xs sm:text-[13px] md:text-sm tracking-[-0.02em] uppercase transition-colors cursor-pointer ${
                         visualFilter === "art"
-                          ? "font-bold text-neutral-950 underline underline-offset-4 decoration-1 hover:text-blue-600"
-                          : "font-normal text-neutral-500 hover:text-blue-600"
+                          ? "font-bold text-[#2d2a24] underline underline-offset-4 decoration-1 hover:text-blue-600"
+                          : "font-normal text-[#2d2a24]/60 hover:text-blue-600"
                       }`}
                     >
                       ART
@@ -74,8 +74,8 @@ export function NavMenu({
                       }
                       className={`py-0.5 text-xs sm:text-[13px] md:text-sm tracking-[-0.02em] uppercase transition-colors cursor-pointer ${
                         visualFilter === "photos"
-                          ? "font-bold text-neutral-950 underline underline-offset-4 decoration-1 hover:text-blue-600"
-                          : "font-normal text-neutral-500 hover:text-blue-600"
+                          ? "font-bold text-[#2d2a24] underline underline-offset-4 decoration-1 hover:text-blue-600"
+                          : "font-normal text-[#2d2a24]/60 hover:text-blue-600"
                       }`}
                     >
                       PHOTOS
@@ -93,8 +93,8 @@ export function NavMenu({
               onClick={() => onTabChange(item.key)}
               className={`py-1 text-sm sm:text-base md:text-[17px] tracking-[-0.02em] uppercase transition-colors duration-150 cursor-pointer select-none opacity-100 ${
                 isActive
-                  ? "text-neutral-950 font-bold hover:text-blue-600"
-                  : "text-neutral-900 font-normal hover:text-blue-600"
+                  ? "text-[#2d2a24] font-bold hover:text-blue-600"
+                  : "text-[#2d2a24] font-normal hover:text-blue-600"
               }`}
             >
               {item.label}
@@ -107,7 +107,7 @@ export function NavMenu({
           href="/cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="py-1 text-sm sm:text-base md:text-[17px] tracking-[-0.02em] uppercase font-normal text-neutral-900 underline underline-offset-4 decoration-1 hover:text-blue-600 transition-colors cursor-pointer select-none opacity-100"
+          className="py-1 text-sm sm:text-base md:text-[17px] tracking-[-0.02em] uppercase font-normal text-[#2d2a24] underline underline-offset-4 decoration-1 hover:text-blue-600 transition-colors cursor-pointer select-none opacity-100"
         >
           CV
         </a>

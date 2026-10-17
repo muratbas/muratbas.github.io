@@ -30,11 +30,11 @@ export function WritingList() {
               {article.date}
             </div>
 
-            {/* Main Title - keeps custom font, turns blue on hover */}
+            {/* Main Title - Urbanist font, turns blue on hover */}
             <div>
               <h2
                 onClick={() => setSelectedArticle(article)}
-                className="text-xl sm:text-2xl md:text-[26px] font-bold tracking-tight text-neutral-950 hover:text-blue-600 transition-colors mb-3 leading-snug cursor-pointer inline-block"
+                className="font-urbanist text-xl sm:text-2xl md:text-[26px] font-bold tracking-tight text-[#2d2a24] hover:text-blue-600 transition-colors mb-3 leading-snug cursor-pointer inline-block"
               >
                 {article.title}
               </h2>

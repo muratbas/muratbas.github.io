@@ -55,7 +55,7 @@ export function MediaCard({
 
         {/* Minimal centered caption with tight letter spacing */}
         <div className="mt-2.5 sm:mt-3 px-1 text-center">
-          <p className="text-xs sm:text-[13px] font-medium tracking-[-0.025em] uppercase text-neutral-900 group-hover:text-blue-600 transition-colors duration-150 leading-snug">
+          <p className="text-xs sm:text-[13px] font-medium tracking-[-0.025em] uppercase text-[#2d2a24] group-hover:text-blue-600 transition-colors duration-150 leading-snug">
             {title}
           </p>
         </div>

@@ -7,12 +7,11 @@ import { Footer } from "@/features/navigation/Footer";
 import { TabKey, VisualFilter } from "@/features/navigation/NavMenu";
 import { MasonryGrid } from "@/features/portfolio/MasonryGrid";
 import { WorkList } from "@/features/portfolio/WorkList";
-import { WorkDrawer } from "@/features/portfolio/WorkDrawer";
 import { Lightbox } from "@/features/portfolio/Lightbox";
 import { WritingList } from "@/features/writing/WritingList";
 import { AboutView } from "@/features/about/AboutView";
 import { VISUAL_ITEMS } from "@/features/portfolio/portfolio.data";
-import { WorkProject, VisualItem } from "@/features/portfolio/portfolio.types";
+import { VisualItem } from "@/features/portfolio/portfolio.types";
 
 function PortfolioContent() {
   const searchParams = useSearchParams();
@@ -31,7 +30,6 @@ function PortfolioContent() {
       ? filterParam
       : "all";
 
-  const [selectedWork, setSelectedWork] = useState<WorkProject | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
 
@@ -77,9 +75,7 @@ function PortfolioContent() {
       />
 
       <main className="flex-1 w-full">
-        {activeTab === "work" && (
-          <WorkList onSelectWork={(project) => setSelectedWork(project)} />
-        )}
+        {activeTab === "work" && <WorkList />}
 
         {activeTab === "visuals" && (
           <MasonryGrid
@@ -93,12 +89,6 @@ function PortfolioContent() {
 
         {activeTab === "about" && <AboutView />}
       </main>
-
-      {/* Work Project Drawer / Modal */}
-      <WorkDrawer
-        project={selectedWork}
-        onClose={() => setSelectedWork(null)}
-      />
 
       {/* Visuals Lightbox */}
       <Lightbox

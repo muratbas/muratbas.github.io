@@ -1,63 +1,63 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { WORK_PROJECTS } from "./portfolio.data";
 import { WorkProject } from "./portfolio.types";
 
 interface WorkListProps {
-  onSelectWork: (project: WorkProject) => void;
+  onSelectWork?: (project: WorkProject) => void;
 }
 
 export function WorkList({ onSelectWork }: WorkListProps) {
-  return (
-    <section className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-12">
-      <div className="space-y-8 sm:space-y-10">
-        {WORK_PROJECTS.map((project) => (
-          <article key={project.id}>
-            {/* Desktop & Tablet Row */}
-            <div className="hidden sm:flex items-center justify-between gap-6">
-              <div className="min-w-0 flex-1">
-                <div>
-                  <h2
-                    onClick={() => onSelectWork(project)}
-                    className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-950 hover:text-blue-600 transition-colors uppercase truncate cursor-pointer inline-block"
-                  >
-                    {project.title}
-                  </h2>
-                </div>
-                <p className="text-xs md:text-sm text-neutral-500 line-clamp-1 mt-1 font-normal tracking-[-0.025em]">
-                  {project.description}
-                </p>
-              </div>
+  const router = useRouter();
 
-              <div className="flex items-center gap-8 md:gap-12 shrink-0">
-                <span className="text-xs text-neutral-500 tracking-tight">
-                  {project.stack.slice(0, 2).join(" · ")}
-                </span>
-                <span className="text-xs text-neutral-400">
-                  {project.year}
-                </span>
-              </div>
+  const handleSelect = (project: WorkProject) => {
+    if (onSelectWork) {
+      onSelectWork(project);
+    }
+    router.push(`/project/${project.id}`);
+  };
+
+  return (
+    <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 animate-fadeIn">
+      {/* 3-Column Responsive Grid with enlarged cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        {WORK_PROJECTS.map((project, index) => (
+          <article
+            key={project.id}
+            onClick={() => handleSelect(project)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleSelect(project);
+              }
+            }}
+            tabIndex={0}
+            role="button"
+            className="group cursor-pointer flex flex-col text-left focus:outline-none p-2 sm:p-2.5 rounded-[22px] hover:bg-[#ECE4D9] transition-colors duration-200"
+            aria-label={`View details for ${project.title}`}
+          >
+            {/* Card Thumbnail Container with Zoom on Hover */}
+            <div className="relative w-full aspect-[16/9] rounded-xl sm:rounded-[16px] overflow-hidden bg-[#e9e2d7]/50 border border-neutral-300/40 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
+              <Image
+                src={project.imageUrl}
+                alt={project.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+                priority={index < 3}
+              />
             </div>
 
-            {/* Mobile View */}
-            <div className="sm:hidden space-y-1.5">
-              <div className="flex items-baseline justify-between">
-                <h2
-                  onClick={() => onSelectWork(project)}
-                  className="text-xl font-bold tracking-tight text-neutral-950 hover:text-blue-600 transition-colors uppercase cursor-pointer"
-                >
-                  {project.title}
-                </h2>
-                <span className="text-xs text-neutral-400">
-                  {project.year}
-                </span>
-              </div>
-              <p className="text-xs text-neutral-600 line-clamp-2 leading-relaxed tracking-[-0.025em]">
+            {/* Typography Below Card - Using Urbanist font strictly for project cards with bold title */}
+            <div className="mt-2.5 sm:mt-3 px-1 pb-1 font-urbanist">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#2d2a24] tracking-tight leading-tight">
+                {project.title}
+              </h2>
+              <p className="text-sm sm:text-base text-[#2d2a24]/80 font-medium leading-normal mt-1.5 sm:mt-2 tracking-normal line-clamp-2">
                 {project.description}
-              </p>
-              <p className="text-[11px] text-neutral-400">
-                {project.stack.slice(0, 2).join(" · ")}
               </p>
             </div>
           </article>

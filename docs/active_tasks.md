@@ -28,9 +28,35 @@
 - [x] Refine [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx): removed divider/ruler lines, removed top table headers and row numbers, and switched project descriptions to custom font
 - [x] Remove visual preview from [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), make only project titles clickable, and remove `CASE STUDY // {year}` header from [`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx)
 - [x] Verify build, types, and linter (`npm run lint` and `npm run type-check` both passing with 0 errors, 0 warnings)
+- [x] Set website background color to `#F5EFE7` across [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) and [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), adjusting [`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx) and [`Footer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Footer.tsx) borders/backgrounds for visual consistency
+- [x] Redesign Work section ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)) to match user reference image: 3-column responsive card grid with `aspect-[16/10]`, `rounded-2xl` thumbnails, title and description underneath, and interactive dashed "Start a new project" card
+- [x] Update project titles to natural title case in [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts)
+- [x] Run full verification (`npm run lint` and `npx tsc --noEmit` passing with 0 errors)
+- [x] Apply `#F5EFE6` directly with `!important` to `html` and `body` in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) and [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), ensuring background renders reliably
+- [x] Remove `Projects` heading from [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
+- [x] Remove `Start a new project` card from [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
+- [x] Scale cards down by ~20% and organize into a responsive 3-column grid (`grid-cols-1 sm:grid-cols-2 md:grid-cols-3`) with calibrated typography ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
+- [x] Adjust card aspect ratio to widescreen `16:9` in [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
+- [x] Tighten spacing between cards (`gap-4 sm:gap-5`) and widen container to `max-w-6xl xl:max-w-7xl` so cards appear visibly larger ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
+- [x] Restore hover zoom effect (`group-hover:scale-[1.04]` with smooth ease-out) on card thumbnails while preserving the outer border frame ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
+- [x] Remove outer border stroke line on hover from project cards, retaining only the soft warm background tint (`hover:bg-[#ECE4D9]`) ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
+- [x] Expand cards further with `max-w-[1400px]` container and refined inner padding ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
+- [x] Import Google Font `Urbanist` and apply strictly to project card titles and descriptions (`font-urbanist`) without affecting any other site fonts ([`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css), [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
+- [x] Update global text/foreground color to `#2d2a24` across [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css), [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), [`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx), [`AboutView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/about/AboutView.tsx), and [`Footer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Footer.tsx)
+- [x] Increase project title weight to `font-bold` (700) and adjust description spacing (`mt-1.5 sm:mt-2`, `leading-normal`, `tracking-normal`) in [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
+- [x] Apply Google Font `Urbanist` (`font-urbanist`) to essay titles across [`WritingList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/WritingList.tsx) and [`ArticleReader.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/ArticleReader.tsx)
+- [x] Discard side drawer (`WorkDrawer.tsx`) and remove drawer state/imports completely from [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx)
+- [x] Build dedicated project page at `/project/[id]` ([`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)) using [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx) with custom project theming (CubeWar, Tubify)
+- [x] Wrap project params data access inside `<Suspense>` in [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx) to resolve Next.js 16 Turbopack Instant Navigation warning
+- [x] Remove "GET IN TOUCH" and next project play buttons from [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
+- [x] Position back button at top-left edge and shift left column elements (title, badges, buttons) closer to the left in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
+- [x] Add dynamic text selection color support (`selectionBg`, `selectionText`) per project theme in [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts) and [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
+- [x] Constrain project media cards strictly to 900x506 (`max-w-[900px] aspect-[900/506]`) with responsive down-scaling in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
+- [x] Implement bottom fade-in animation for project title on page entry (`animate-title-enter` in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) & [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx))
+- [x] Implement smooth staggered reveal animation for media cards (`animate-media-card` in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) & [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx))
 
 ### Blockers / Known Issues
 - None.
 
 ### Next Steps
-- Await next feature or feedback from user.
+- Await user feedback on animations, media dimensions, and text selection styling.
