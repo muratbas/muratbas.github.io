@@ -102,7 +102,8 @@ export function Lightbox({
               width={1000}
               height={1000}
               priority
-              className="max-h-[75vh] max-w-full w-auto h-auto object-contain shadow-2xl"
+              draggable={false}
+              className="max-h-[75vh] max-w-full w-auto h-auto object-contain shadow-2xl select-none"
             />
           </div>
         </div>

@@ -11,6 +11,7 @@ export interface ProjectTheme {
   bg: string;
   sheetBg: string;
   accent: string;
+  accentHover?: string;
   text?: string;
   selectionBg?: string;
   selectionText?: string;

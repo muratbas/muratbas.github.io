@@ -39,14 +39,15 @@ export function MediaCard({
         aria-label={title}
       >
         {/* Zero-border, zero-shadow image canvas without zoom scale */}
-        <div className={`relative w-full overflow-hidden bg-white ${aspectClass}`}>
+        <div className={`relative w-full overflow-hidden bg-white select-none ${aspectClass}`}>
           <Image
             src={imageUrl}
             alt={title}
             fill
+            draggable={false}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
-            className="object-cover object-center"
+            className="object-cover object-center select-none pointer-events-none"
           />
 
           {/* Translucent white overlay on hover matching reference screenshot */}

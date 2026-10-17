@@ -47,16 +47,21 @@
 - [x] Apply Google Font `Urbanist` (`font-urbanist`) to essay titles across [`WritingList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/WritingList.tsx) and [`ArticleReader.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/ArticleReader.tsx)
 - [x] Discard side drawer (`WorkDrawer.tsx`) and remove drawer state/imports completely from [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx)
 - [x] Build dedicated project page at `/project/[id]` ([`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)) using [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx) with custom project theming (CubeWar, Tubify)
-- [x] Wrap project params data access inside `<Suspense>` in [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx) to resolve Next.js 16 Turbopack Instant Navigation warning
-- [x] Remove "GET IN TOUCH" and next project play buttons from [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
-- [x] Position back button at top-left edge and shift left column elements (title, badges, buttons) closer to the left in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
-- [x] Add dynamic text selection color support (`selectionBg`, `selectionText`) per project theme in [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts) and [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
-- [x] Constrain project media cards strictly to 900x506 (`max-w-[900px] aspect-[900/506]`) with responsive down-scaling in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
-- [x] Implement bottom fade-in animation for project title on page entry (`animate-title-enter` in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) & [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx))
-- [x] Implement smooth staggered reveal animation for media cards (`animate-media-card` in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) & [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx))
+- [x] Reduce spacing between project card title and description from `mt-1.5 sm:mt-2` to `mt-0.5` in [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
+- [x] Permanently fix blank screen navigation issue:
+  - Removed unstable Next.js 16 Canary experimental flags (`cacheComponents`, `partialPrefetching`) from [`next.config.ts`](file:///c:/Projeler/portfolyowebsite/next.config.ts) which caused partial prerender stream aborts on client route transitions
+  - Pre-renders `/project/[id]` routes as pure static HTML (SSG) with `generateStaticParams` in [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)
+  - Switched page enter animation in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) to lightweight hardware compositor `opacity` + `translateY` without `both` fill-mode and without GPU offscreen blur buffer stalls
+
+- [x] Center upper hero section and top bar strictly within `max-w-[900px] mx-auto` in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), pulling title/actions on left and description on right inward so they sit directly aligned atop the 900px media cards
+- [x] Keep site `<title>` permanently fixed to `"Murat Baş"` across all pages without dynamic route overrides:
+  - Set `title: "Murat Baş"` in [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx)
+  - Removed `generateMetadata` title override from [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)
+- [x] Set `draggable={false}` and `select-none` on all card images/videos across [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx), and [`Lightbox.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/Lightbox.tsx)
+- [x] Ensure project detail action buttons (LIVE VIEW, SOURCE CODE, Back) change only their background color on hover, locking text color to white (`color: #ffffff !important`) and excluding buttons from global `a:hover` text color styling in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), and [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css)
 
 ### Blockers / Known Issues
 - None.
 
 ### Next Steps
-- Await user feedback on animations, media dimensions, and text selection styling.
+- Await user verification on the updated button hover interaction.

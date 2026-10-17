@@ -46,15 +46,15 @@ export const WORK_PROJECTS: WorkProject[] = [
       "A distraction-free native desktop music player interfacing with YouTube Music API with seamless audio streaming and zero advertisement latency.",
       "Features background audio playback, local offline caching, and responsive GPU audio visualizer waveforms built with high performance and minimal memory footprint."
     ],
-    stack: ["Rust", "WebAudio", "Tauri", "Tailwind CSS"],
+    stack: ["Rust", "Typescript", "Tauri", "Tailwind CSS"],
     liveUrl: "https://example.com/aura",
     githubUrl: "https://github.com/muratbas/tubify",
     year: "2026",
     theme: {
-      bg: "#121713",
-      sheetBg: "#1a231c",
+      bg: "#000000ff",
+      sheetBg: "#e2e2e2a4",
       accent: "#10b981",
-      text: "#ffffff",
+      text: "#ff0000ff",
       selectionBg: "#10b981",
       selectionText: "#ffffff",
     },
@@ -63,12 +63,7 @@ export const WORK_PROJECTS: WorkProject[] = [
         url: "/images/work/banner-tubify.png",
         caption: "Audio Player & Queue",
         type: "image",
-      },
-      {
-        url: "/images/work/timeisup.png",
-        caption: "Equalizer & Visualizer",
-        type: "image",
-      },
+      }
     ],
   }
 ];

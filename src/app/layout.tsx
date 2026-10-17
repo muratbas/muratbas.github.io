@@ -23,7 +23,7 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  title: "Murat Bas",
+  title: "Murat Baş",
   description:
     "Hi, I'm Murat and I create things. Based in Samsun, Turkiye.",
   icons: {

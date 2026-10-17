@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { WorkProject } from "./portfolio.types";
@@ -33,6 +33,23 @@ const TECH_PILL_COLORS: Record<string, string> = {
 export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const router = useRouter();
   const [isExiting, setIsExiting] = useState(false);
+  const exitTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Handle browser Back/Forward Cache (bfcache) restoration & timer cleanup
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        setIsExiting(false);
+      }
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+      if (exitTimeoutRef.current) {
+        clearTimeout(exitTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Fallback theme colors if not explicitly specified
   const theme = project.theme || {
@@ -43,10 +60,11 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   };
 
   const handleBack = () => {
+    if (isExiting) return;
     setIsExiting(true);
-    setTimeout(() => {
+    exitTimeoutRef.current = setTimeout(() => {
       router.push("/");
-    }, 240);
+    }, 220);
   };
 
   // Media list: uses project.media if available, else falls back to hero imageUrl
@@ -61,43 +79,78 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   return (
     <div
       style={{ backgroundColor: theme.bg }}
-      className={`project-detail-scope min-h-screen text-white font-urbanist transition-all duration-300 ${
+      className={`project-detail-scope min-h-screen text-white font-urbanist ${
         isExiting ? "animate-project-exit" : "animate-project-enter"
       }`}
     >
-      {/* Dynamic text selection color scoped to project page */}
+      {/* Dynamic text selection color & interactive button hover styles */}
       <style>{`
         .project-detail-scope ::selection,
         .project-detail-scope *::selection {
           background-color: ${selectionBg} !important;
           color: ${selectionText} !important;
         }
+
+        /* LIVE VIEW: fixed white text, background color changes on hover */
+        .project-detail-scope .btn-live-view {
+          background-color: ${theme.accent} !important;
+          color: #ffffff !important;
+          transition: background-color 0.2s ease, filter 0.2s ease, transform 0.15s ease !important;
+        }
+        .project-detail-scope .btn-live-view:hover {
+          background-color: ${theme.accentHover || theme.accent} !important;
+          color: #ffffff !important;
+          ${theme.accentHover ? "" : "filter: brightness(1.2);"}
+        }
+
+        /* SOURCE CODE: fixed white text, background color changes on hover */
+        .project-detail-scope .btn-source-code {
+          background-color: rgba(255, 255, 255, 0.1) !important;
+          color: #ffffff !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+          transition: background-color 0.2s ease, transform 0.15s ease !important;
+        }
+        .project-detail-scope .btn-source-code:hover {
+          background-color: rgba(255, 255, 255, 0.25) !important;
+          color: #ffffff !important;
+        }
+
+        /* Back circular button: fixed white icon, background color changes on hover */
+        .project-detail-scope .btn-back {
+          background-color: ${theme.accent} !important;
+          color: #ffffff !important;
+          transition: background-color 0.2s ease, filter 0.2s ease, transform 0.15s ease !important;
+        }
+        .project-detail-scope .btn-back:hover {
+          background-color: ${theme.accentHover || theme.accent} !important;
+          color: #ffffff !important;
+          ${theme.accentHover ? "" : "filter: brightness(1.2);"}
+        }
       `}</style>
 
-      {/* Top Left: Circular Back Arrow Button positioned at the very top-left */}
-      <div className="w-full px-6 sm:px-10 lg:px-16 pt-6 sm:pt-8 pb-3">
+      {/* Top Bar: Circular Back Arrow Button aligned with the 900px container */}
+      <div className="w-full max-w-[900px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-2">
         <button
           type="button"
           onClick={handleBack}
-          style={{ backgroundColor: theme.accent }}
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white shadow-md hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+          className="btn-back w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-md hover:scale-105 active:scale-95 cursor-pointer"
           aria-label="Back to projects"
         >
           <ArrowLeftIcon className="w-5 h-5 stroke-[2.5]" />
         </button>
       </div>
 
-      {/* Hero Section - Left elements shifted a notch to the left */}
-      <header className="w-full px-6 sm:px-10 lg:px-16 pt-4 sm:pt-6 pb-10 sm:pb-14">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+      {/* Hero Section - Centered directly above the 900px media card */}
+      <header className="w-full max-w-[900px] mx-auto px-4 sm:px-6 pt-2 sm:pt-4 pb-10 sm:pb-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Column: Title, Tech Stack Badges & Action Buttons */}
-          <div className="lg:col-span-7 flex flex-col items-start">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-4 sm:mb-5 animate-title-enter">
+          <div className="flex flex-col items-start">
+            <h1 className="text-4xl sm:text-5xl md:text-[54px] font-bold tracking-tight text-white mb-3 sm:mb-4 leading-tight animate-title-enter">
               {project.title}
             </h1>
 
             {/* Tech Stack Pills with vibrant colors */}
-            <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+            <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
               {project.stack.map((tech) => (
                 <span
                   key={tech}
@@ -117,8 +170,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ backgroundColor: theme.accent }}
-                  className="px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-tight text-white shadow-md hover:opacity-90 active:scale-95 transition-all cursor-pointer"
+                  className="btn-live-view px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-tight shadow-md active:scale-95 cursor-pointer"
                 >
                   LIVE VIEW
                 </a>
@@ -129,7 +181,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-tight text-white/95 bg-white/10 hover:bg-white/20 border border-white/20 active:scale-95 transition-all cursor-pointer"
+                  className="btn-source-code px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-tight active:scale-95 cursor-pointer"
                 >
                   SOURCE CODE
                 </a>
@@ -138,7 +190,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
           </div>
 
           {/* Right Column: Narrative Multi-paragraph Overview */}
-          <div className="lg:col-span-5 text-sm sm:text-[15px] md:text-base text-white/80 leading-relaxed font-normal space-y-3 pt-2">
+          <div className="text-sm sm:text-[15px] md:text-base text-white/80 leading-relaxed font-normal space-y-3">
             {project.longDescription && project.longDescription.length > 0 ? (
               project.longDescription.map((paragraph, idx) => (
                 <p key={idx}>{paragraph}</p>
@@ -165,7 +217,7 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
               style={{
                 animationDelay: `${0.2 + idx * 0.15}s`,
               }}
-              className="relative w-full max-w-[900px] aspect-[900/506] rounded-2xl sm:rounded-[24px] overflow-hidden bg-black/10 shadow-2xl border border-white/5 animate-media-card"
+              className="relative w-full max-w-[900px] aspect-[900/506] rounded-2xl sm:rounded-[24px] overflow-hidden bg-black/10 shadow-2xl border border-white/5 animate-media-card select-none"
             >
               {item.type === "video" ? (
                 <video
@@ -174,15 +226,17 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover block"
+                  draggable={false}
+                  className="w-full h-full object-cover block select-none pointer-events-none"
                 />
               ) : (
                 <Image
                   src={item.url}
                   alt={item.caption || `${project.title} screenshot ${idx + 1}`}
                   fill
+                  draggable={false}
                   sizes="(max-width: 900px) 100vw, 900px"
-                  className="object-cover block"
+                  className="object-cover block select-none pointer-events-none"
                   priority={idx === 0}
                 />
               )}
