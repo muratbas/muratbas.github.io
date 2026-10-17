@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AspectRatioType } from "./portfolio.types";
 
 interface MediaCardProps {
-  id: string;
   title: string;
   aspectRatio: AspectRatioType;
   imageUrl: string;

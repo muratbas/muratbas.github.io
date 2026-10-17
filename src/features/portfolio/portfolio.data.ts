@@ -4,7 +4,6 @@ export const WORK_PROJECTS: WorkProject[] = [
   {
     id: "tubify",
     title: "Tubify",
-    aspectRatio: "square",
     imageUrl: "/images/work/banner-tubify.png",
     description: "Native music app",
     longDescription: [
@@ -34,7 +33,6 @@ export const WORK_PROJECTS: WorkProject[] = [
   {
     id: "omu",
     title: "Omu Forum",
-    aspectRatio: "square",
     imageUrl: "/images/work/omuforum.png",
     description: "University forum website",
     longDescription: [
@@ -42,7 +40,6 @@ export const WORK_PROJECTS: WorkProject[] = [
     ],
     stack: ["Next.js", "Typescript", "Tailwind CSS"],
     liveUrl: "https://omu.muratbas.com",
-    githubUrl: "https://github.com/muratbas/tubify",
     year: "2025",
     theme: {
       bg: "#F9FBFE",

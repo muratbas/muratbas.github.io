@@ -2,22 +2,16 @@
 
 import React, { useMemo } from "react";
 import { MediaCard } from "./MediaCard";
-import { WorkProject, VisualItem } from "./portfolio.types";
-
-type PortfolioItem = (WorkProject | VisualItem) & {
-  type: "work" | "visual";
-};
+import { VisualItem } from "./portfolio.types";
 
 interface MasonryGridProps {
-  items: PortfolioItem[];
-  onSelectWork: (project: WorkProject) => void;
-  onSelectVisual: (visual: VisualItem) => void;
+  items: VisualItem[];
+  onSelect: (item: VisualItem) => void;
 }
 
-export function MasonryGrid({ items, onSelectWork, onSelectVisual }: MasonryGridProps) {
-  // Partition items into 3 columns for desktop and 2 columns for tablet
+export function MasonryGrid({ items, onSelect }: MasonryGridProps) {
   const columns3 = useMemo(() => {
-    const cols: PortfolioItem[][] = [[], [], []];
+    const cols: VisualItem[][] = [[], [], []];
     items.forEach((item, idx) => {
       cols[idx % 3].push(item);
     });
@@ -25,30 +19,21 @@ export function MasonryGrid({ items, onSelectWork, onSelectVisual }: MasonryGrid
   }, [items]);
 
   const columns2 = useMemo(() => {
-    const cols: PortfolioItem[][] = [[], []];
+    const cols: VisualItem[][] = [[], []];
     items.forEach((item, idx) => {
       cols[idx % 2].push(item);
     });
     return cols;
   }, [items]);
 
-  const renderCard = (item: PortfolioItem, priority = false) => {
-    const handleClick = () => {
-      if (item.type === "work") {
-        onSelectWork(item as WorkProject);
-      } else {
-        onSelectVisual(item as VisualItem);
-      }
-    };
-
+  const renderCard = (item: VisualItem, priority = false) => {
     return (
       <MediaCard
         key={item.id}
-        id={item.id}
         title={item.title}
         aspectRatio={item.aspectRatio || "square"}
         imageUrl={item.imageUrl}
-        onClick={handleClick}
+        onClick={() => onSelect(item)}
         priority={priority}
       />
     );

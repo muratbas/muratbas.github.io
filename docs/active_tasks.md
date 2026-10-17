@@ -66,9 +66,17 @@
   - Standardized tech stack pills with official brand colors (e.g. JavaScript yellow with dark text, TypeScript blue, React cyan, Node green, Rust orange-red, Redis red, Tailwind sky-blue, etc.) and case-insensitive normalization
   - Added visibility safeguards (`border border-neutral-300 shadow-sm`) for white or unknown tech bubbles so they never become invisible on light backgrounds
   - Made `SOURCE CODE` button theme-aware with dynamic contrast adaptivity on light/dark backgrounds
+- [x] Full codebase audit and cleanup in strict accordance with [AGENTS.md](file:///c:/Projeler/portfolyowebsite/AGENTS.md):
+  - Removed 9 unused starter SVG assets from `public/images/work/`
+  - Eliminated unused `ExternalLinkIcon` from [`Icons.tsx`](file:///c:/Projeler/portfolyowebsite/src/components/ui/Icons.tsx)
+  - Simplified [`MasonryGrid.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MasonryGrid.tsx) by removing obsolete `PortfolioItem` union type, dead `onSelectWork` prop, and `as Type` assertions
+  - Cleaned up unused `id` prop from [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx)
+  - Removed obsolete `aspectRatio` property from `WorkProject` and `ProjectMedia` in [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts) and [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts)
+  - Simplified [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx) to pass `filteredVisuals` directly to `MasonryGrid` without intermediate mapping
+  - Verified `npm run type-check` and `npm run lint` passing with 0 errors and 0 warnings
 
 ### Blockers / Known Issues
 - None.
 
 ### Next Steps
-- Await user verification on the updated project layout and tech stack pills.
+- Portfolio codebase is clean, lean, and fully compliant with AGENTS.md constitution. Await next user instruction.

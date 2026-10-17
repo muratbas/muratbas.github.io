@@ -4,7 +4,6 @@ export interface ProjectMedia {
   type?: "image" | "video";
   url: string;
   caption?: string;
-  aspectRatio?: string;
 }
 
 export interface ProjectTheme {
@@ -20,7 +19,6 @@ export interface ProjectTheme {
 export interface WorkProject {
   id: string;
   title: string;
-  aspectRatio?: AspectRatioType;
   imageUrl: string;
   description: string;
   longDescription?: string[];

@@ -60,11 +60,6 @@ function PortfolioContent() {
     }
   };
 
-  const visualItems = filteredVisuals.map((visual) => ({
-    ...visual,
-    type: "visual" as const,
-  }));
-
   return (
     <div className="flex-1 flex flex-col justify-between w-full min-h-screen">
       <Header
@@ -79,9 +74,8 @@ function PortfolioContent() {
 
         {activeTab === "visuals" && (
           <MasonryGrid
-            items={visualItems}
-            onSelectWork={() => {}}
-            onSelectVisual={handleOpenVisual}
+            items={filteredVisuals}
+            onSelect={handleOpenVisual}
           />
         )}
 
