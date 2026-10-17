@@ -2,46 +2,11 @@ import { WorkProject, VisualItem } from "./portfolio.types";
 
 export const WORK_PROJECTS: WorkProject[] = [
   {
-    id: "omu-forum",
-    title: "Omu Forum",
-    aspectRatio: "square",
-    imageUrl: "/images/work/omuf.png",
-    description: "Multiplayer Strategy Game",
-    longDescription: [
-      "CubeWar is a browser-based multiplayer game where players control cube avatars in fast-paced strategic battles.",
-      "I built the full stack myself, including the game engine, the client-side timeline system, and real-time networking with Redis-based matchmaking for smooth, high-concurrency gameplay."
-    ],
-    stack: ["Three.js", "Node.js", "WebSockets", "Redis"],
-    liveUrl: "https://omu.muratbas.com",
-    githubUrl: "https://github.com/muratbas/samsun-forum",
-    year: "2025",
-    theme: {
-      bg: "#1e2d42",
-      sheetBg: "#283b54",
-      accent: "#0091ff",
-      text: "#ffffff",
-      selectionBg: "#0091ff",
-      selectionText: "#ffffff",
-    },
-    media: [
-      {
-        url: "/images/work/omuf.png",
-        caption: "Tutorial",
-        type: "image",
-      },
-      {
-        url: "/images/work/pide.png",
-        caption: "Map Themes",
-        type: "image",
-      },
-    ],
-  },
-  {
     id: "tubify",
     title: "Tubify",
     aspectRatio: "square",
     imageUrl: "/images/work/banner-tubify.png",
-    description: "Native Youtube Music",
+    description: "Native music app",
     longDescription: [
       "A distraction-free native desktop music player interfacing with YouTube Music API with seamless audio streaming and zero advertisement latency.",
       "Features background audio playback, local offline caching, and responsive GPU audio visualizer waveforms built with high performance and minimal memory footprint."
@@ -51,11 +16,11 @@ export const WORK_PROJECTS: WorkProject[] = [
     githubUrl: "https://github.com/muratbas/tubify",
     year: "2026",
     theme: {
-      bg: "#000000ff",
-      sheetBg: "#e2e2e2a4",
-      accent: "#10b981",
-      text: "#ff0000ff",
-      selectionBg: "#10b981",
+      bg: "#F9FBFE",
+      sheetBg: "#E9EDF6",
+      accent: "#e43232ff",
+      text: "#0D1B3A",
+      selectionBg: "#e43232ff",
       selectionText: "#ffffff",
     },
     media: [

@@ -59,9 +59,16 @@
   - Removed `generateMetadata` title override from [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)
 - [x] Set `draggable={false}` and `select-none` on all card images/videos across [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx), and [`Lightbox.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/Lightbox.tsx)
 - [x] Ensure project detail action buttons (LIVE VIEW, SOURCE CODE, Back) change only their background color on hover, locking text color to white (`color: #ffffff !important`) and excluding buttons from global `a:hover` text color styling in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), and [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css)
+- [x] Wire `theme.text` from [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts) directly into [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), removing hardcoded `text-white` from the container, title, description, and captions so custom project text colors apply properly
+- [x] Reposition project detail upper layout matching user sketch and standardize tech stack badges:
+  - Repositioned top circular back button to the left boundary in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
+  - Expanded hero section across a wide container (`max-w-[1440px] px-6 sm:px-10 lg:px-16`) with `justify-between`, separating title/badges/buttons to the left and narrative description to the right
+  - Standardized tech stack pills with official brand colors (e.g. JavaScript yellow with dark text, TypeScript blue, React cyan, Node green, Rust orange-red, Redis red, Tailwind sky-blue, etc.) and case-insensitive normalization
+  - Added visibility safeguards (`border border-neutral-300 shadow-sm`) for white or unknown tech bubbles so they never become invisible on light backgrounds
+  - Made `SOURCE CODE` button theme-aware with dynamic contrast adaptivity on light/dark backgrounds
 
 ### Blockers / Known Issues
 - None.
 
 ### Next Steps
-- Await user verification on the updated button hover interaction.
+- Await user verification on the updated project layout and tech stack pills.

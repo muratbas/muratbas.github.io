@@ -10,25 +10,69 @@ interface ProjectDetailViewProps {
   project: WorkProject;
 }
 
-// Colors for tech stack badges matching the reference screenshot design
-const TECH_PILL_COLORS: Record<string, string> = {
-  "Three.js": "bg-[#e67e22] text-white",
-  "Node.js": "bg-[#27ae60] text-white",
-  "WebSockets": "bg-[#2980b9] text-white",
-  "Redis": "bg-[#c0392b] text-white",
-  "Rust": "bg-[#d35400] text-white",
-  "WebAudio": "bg-[#8e44ad] text-white",
-  "Tauri": "bg-[#16a085] text-white",
-  "Tailwind CSS": "bg-[#0284c7] text-white",
-  "Next.js": "bg-[#111827] text-white",
-  "Next.js 15": "bg-[#111827] text-white",
-  "TypeScript": "bg-[#2563eb] text-white",
-  "JavaScript": "bg-[#f1c40f] text-neutral-900",
-  "HTML": "bg-[#e67e22] text-white",
-  "CSS": "bg-[#2980b9] text-white",
-  "GLSL": "bg-[#8e44ad] text-white",
-  "OGL.js": "bg-[#16a085] text-white",
+// Standardized brand colors and high-contrast styles for tech stack badges
+const TECH_PILL_MAP: Record<string, string> = {
+  // JavaScript & TypeScript
+  javascript: "bg-[#F7DF1E] text-black border border-black/20 shadow-sm",
+  js: "bg-[#F7DF1E] text-black border border-black/20 shadow-sm",
+  typescript: "bg-[#3178C6] text-white border border-blue-700/40 shadow-sm",
+  ts: "bg-[#3178C6] text-white border border-blue-700/40 shadow-sm",
+
+  // 3D, Audio & Graphics
+  threejs: "bg-[#E67E22] text-white border border-orange-600/30 shadow-sm",
+  webaudio: "bg-[#8E44AD] text-white border border-purple-600/30 shadow-sm",
+  webgl: "bg-[#990000] text-white border border-red-800/30 shadow-sm",
+  glsl: "bg-[#8E44AD] text-white border border-purple-700/30 shadow-sm",
+  ogljs: "bg-[#16A085] text-white border border-teal-700/30 shadow-sm",
+
+  // Modern Frameworks & Libraries
+  react: "bg-[#087EA4] text-white border border-cyan-500/30 shadow-sm",
+  reactnative: "bg-[#087EA4] text-white border border-cyan-500/30 shadow-sm",
+  nextjs: "bg-neutral-900 text-white border border-neutral-700 shadow-sm",
+  nextjs15: "bg-neutral-900 text-white border border-neutral-700 shadow-sm",
+  next: "bg-neutral-900 text-white border border-neutral-700 shadow-sm",
+  vue: "bg-[#42B883] text-white border border-emerald-600/30 shadow-sm",
+  vuejs: "bg-[#42B883] text-white border border-emerald-600/30 shadow-sm",
+  svelte: "bg-[#FF3E00] text-white border border-red-600/30 shadow-sm",
+  sveltekit: "bg-[#FF3E00] text-white border border-red-600/30 shadow-sm",
+
+  // Backend, Network & Data
+  nodejs: "bg-[#27AE60] text-white border border-green-700/30 shadow-sm",
+  node: "bg-[#27AE60] text-white border border-green-700/30 shadow-sm",
+  websockets: "bg-[#2980B9] text-white border border-blue-600/30 shadow-sm",
+  websocket: "bg-[#2980B9] text-white border border-blue-600/30 shadow-sm",
+  redis: "bg-[#DC382D] text-white border border-red-600/30 shadow-sm",
+  postgresql: "bg-[#336791] text-white border border-blue-700/30 shadow-sm",
+  postgres: "bg-[#336791] text-white border border-blue-700/30 shadow-sm",
+  mongodb: "bg-[#47A248] text-white border border-green-700/30 shadow-sm",
+  graphql: "bg-[#E10098] text-white border border-pink-600/30 shadow-sm",
+  docker: "bg-[#2496ED] text-white border border-blue-600/30 shadow-sm",
+
+  // Native, Systems & Languages
+  rust: "bg-[#CE412B] text-white border border-red-700/30 shadow-sm",
+  tauri: "bg-[#24C8DB] text-neutral-950 border border-cyan-500/40 shadow-sm",
+  python: "bg-[#3776AB] text-white border border-blue-600/30 shadow-sm",
+  go: "bg-[#00ADD8] text-white border border-cyan-600/30 shadow-sm",
+  golang: "bg-[#00ADD8] text-white border border-cyan-600/30 shadow-sm",
+  cpp: "bg-[#00599C] text-white border border-blue-700/30 shadow-sm",
+  csharp: "bg-[#239120] text-white border border-green-700/30 shadow-sm",
+  swift: "bg-[#F05138] text-white border border-orange-600/30 shadow-sm",
+  kotlin: "bg-[#7F52FF] text-white border border-indigo-600/30 shadow-sm",
+
+  // Markup & Styling
+  tailwindcss: "bg-[#0284C7] text-white border border-sky-600/30 shadow-sm",
+  tailwind: "bg-[#0284C7] text-white border border-sky-600/30 shadow-sm",
+  html: "bg-[#E34F26] text-white border border-orange-600/30 shadow-sm",
+  html5: "bg-[#E34F26] text-white border border-orange-600/30 shadow-sm",
+  css: "bg-[#1572B6] text-white border border-blue-600/30 shadow-sm",
+  css3: "bg-[#1572B6] text-white border border-blue-600/30 shadow-sm",
 };
+
+function getTechPillClass(tech: string): string {
+  const key = tech.toLowerCase().replace(/[\s\-_.]/g, "");
+  // Standard brand color if recognized; if unknown or white, always enforce a visible border so visibility is never broken
+  return TECH_PILL_MAP[key] || "bg-white text-neutral-900 border border-neutral-300 shadow-sm";
+}
 
 export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const router = useRouter();
@@ -52,11 +96,14 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   }, []);
 
   // Fallback theme colors if not explicitly specified
-  const theme = project.theme || {
-    bg: "#1e2d42",
-    sheetBg: "#283b54",
-    accent: "#0091ff",
-    text: "#ffffff",
+  const theme = {
+    bg: project.theme?.bg || "#1e2d42",
+    sheetBg: project.theme?.sheetBg || "#283b54",
+    accent: project.theme?.accent || "#0091ff",
+    accentHover: project.theme?.accentHover,
+    text: project.theme?.text || "#ffffff",
+    selectionBg: project.theme?.selectionBg,
+    selectionText: project.theme?.selectionText,
   };
 
   const handleBack = () => {
@@ -76,10 +123,23 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const selectionBg = theme.selectionBg || theme.accent || "#0091ff";
   const selectionText = theme.selectionText || "#ffffff";
 
+  // Check background lightness to adapt subtle borders and secondary button colors
+  const isLightBg = (() => {
+    const hex = theme.bg.replace("#", "");
+    if (hex.length < 6) return false;
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return (r * 299 + g * 587 + b * 114) / 1000 > 155;
+  })();
+
   return (
     <div
-      style={{ backgroundColor: theme.bg }}
-      className={`project-detail-scope min-h-screen text-white font-urbanist ${
+      style={{
+        backgroundColor: theme.bg,
+        color: theme.text,
+      }}
+      className={`project-detail-scope min-h-screen font-urbanist ${
         isExiting ? "animate-project-exit" : "animate-project-enter"
       }`}
     >
@@ -103,16 +163,16 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
           ${theme.accentHover ? "" : "filter: brightness(1.2);"}
         }
 
-        /* SOURCE CODE: fixed white text, background color changes on hover */
+        /* SOURCE CODE: adapts cleanly to both dark and light backgrounds */
         .project-detail-scope .btn-source-code {
-          background-color: rgba(255, 255, 255, 0.1) !important;
-          color: #ffffff !important;
-          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+          background-color: ${isLightBg ? "rgba(0, 0, 0, 0.06)" : "rgba(255, 255, 255, 0.1)"} !important;
+          color: ${isLightBg ? theme.text : "#ffffff"} !important;
+          border: 1px solid ${isLightBg ? "rgba(0, 0, 0, 0.15)" : "rgba(255, 255, 255, 0.2)"} !important;
           transition: background-color 0.2s ease, transform 0.15s ease !important;
         }
         .project-detail-scope .btn-source-code:hover {
-          background-color: rgba(255, 255, 255, 0.25) !important;
-          color: #ffffff !important;
+          background-color: ${isLightBg ? "rgba(0, 0, 0, 0.12)" : "rgba(255, 255, 255, 0.25)"} !important;
+          color: ${isLightBg ? theme.text : "#ffffff"} !important;
         }
 
         /* Back circular button: fixed white icon, background color changes on hover */
@@ -128,8 +188,8 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
         }
       `}</style>
 
-      {/* Top Bar: Circular Back Arrow Button aligned with the 900px container */}
-      <div className="w-full max-w-[900px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-2">
+      {/* Top Bar: Circular Back Arrow Button positioned at the left */}
+      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-6 sm:pt-8 pb-2">
         <button
           type="button"
           onClick={handleBack}
@@ -140,23 +200,24 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
         </button>
       </div>
 
-      {/* Hero Section - Centered directly above the 900px media card */}
-      <header className="w-full max-w-[900px] mx-auto px-4 sm:px-6 pt-2 sm:pt-4 pb-10 sm:pb-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
+      {/* Hero Section - Wide layout with left elements on the left and narrative on the right */}
+      <header className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 pt-2 sm:pt-4 pb-10 sm:pb-14">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16">
           {/* Left Column: Title, Tech Stack Badges & Action Buttons */}
-          <div className="flex flex-col items-start">
-            <h1 className="text-4xl sm:text-5xl md:text-[54px] font-bold tracking-tight text-white mb-3 sm:mb-4 leading-tight animate-title-enter">
+          <div className="flex flex-col items-start max-w-xl">
+            <h1
+              style={{ color: theme.text }}
+              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 sm:mb-5 leading-tight animate-title-enter"
+            >
               {project.title}
             </h1>
 
-            {/* Tech Stack Pills with vibrant colors */}
-            <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
+            {/* Tech Stack Pills with standardized colors & borders */}
+            <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
               {project.stack.map((tech) => (
                 <span
                   key={tech}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold tracking-tight ${
-                    TECH_PILL_COLORS[tech] || "bg-white/20 text-white"
-                  }`}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold tracking-tight ${getTechPillClass(tech)}`}
                 >
                   {tech}
                 </span>
@@ -190,7 +251,10 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
           </div>
 
           {/* Right Column: Narrative Multi-paragraph Overview */}
-          <div className="text-sm sm:text-[15px] md:text-base text-white/80 leading-relaxed font-normal space-y-3">
+          <div
+            style={{ color: theme.text }}
+            className="w-full lg:max-w-lg text-sm sm:text-[15px] md:text-base opacity-85 leading-relaxed font-normal space-y-3 pt-1 lg:pt-3"
+          >
             {project.longDescription && project.longDescription.length > 0 ? (
               project.longDescription.map((paragraph, idx) => (
                 <p key={idx}>{paragraph}</p>
@@ -244,7 +308,10 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
               {/* Inverted fillet corner cutout caption tab matching reference screenshots */}
               {item.caption && (
                 <div className="media-caption-tab">
-                  <span className="font-urbanist font-bold text-xs sm:text-sm text-white tracking-tight select-none whitespace-nowrap">
+                  <span
+                    style={{ color: theme.text }}
+                    className="font-urbanist font-bold text-xs sm:text-sm tracking-tight select-none whitespace-nowrap"
+                  >
                     {item.caption}
                   </span>
                 </div>
