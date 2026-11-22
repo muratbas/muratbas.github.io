@@ -1,82 +1,31 @@
 # Active Tasks
 
-## Current Session: Kate Dehler Style Personal Portfolio Build
+## Current Session: Lynn Fisher (lynnandtonic.com v. XIX) Book Adaptation for Murat Baş
 
 ### Completed
-- [x] Replace header logo with uploaded `logo.png` and enlarge display size ([`Logo.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Logo.tsx))
-- [x] Enlarge nav tabs, set default opacity to 100%, and apply blue hover (`hover:text-blue-600`) across all links ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx))
-- [x] Remove scale/zoom effect on card hover and add translucent white overlay ([`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx))
-- [x] Update footer copyright to `👾 Copyright Murat Baş 2026` and use social media logo icons ([`Footer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Footer.tsx))
-- [x] Replace About section with centered statement and bold mailto link ([`AboutView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/about/AboutView.tsx))
-- [x] Configure global blue link hover in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css)
-- [x] Integrate user's uploaded `Basteleur-Bold.otf` font via `next/font/local` in [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx)
-- [x] Change Contact tab to underlined `CV` tab with strictly normal font weight (`font-normal`, not bold), opening `/cv.pdf` in a new tab ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx))
-- [x] Implement forked sub-tabs (`ART` / `PHOTOS`) anchored directly underneath the `VISUALS` tab (matching user screenshot) with URL-synced filtering ([`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx), [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx))
-- [x] Clicking `VISUALS` displays all items; clicking `ART` or `PHOTOS` isolates each category; clicking active sub-tab toggles back to all
-- [x] Categorize visual items into `art` and `photos` in [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts)
-- [x] Remove `context`, `role`, and `engineering Architecture` sections from Work modal ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts))
-- [x] Rename `Technologies & Infrastructure` header to `Tech stack` ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx))
-- [x] Set `VIEW LIVE PROJECT` button hover to sleek dark neutral (`hover:bg-neutral-800 hover:text-white`), keeping it dark and preventing blue color glitch ([`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx))
-- [x] Remove `subtitle` completely from portfolio data, interfaces, cards, and lightbox ([`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx), [`MasonryGrid.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MasonryGrid.tsx), [`Lightbox.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/Lightbox.tsx))
-- [x] Clean up unused code and assets: removed redundant `src/features/contact/`, unused `src/lib/`, unused icons in [`Icons.tsx`](file:///c:/Projeler/portfolyowebsite/src/components/ui/Icons.tsx), duplicate `public/fonts/`, and default starter SVGs in `public/`
-- [x] Remove `readTime` completely from [`writing.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/writing/writing.types.ts) and [`writing.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/writing/writing.data.ts)
-- [x] Add optional essay banner image (`headerImage`) support directly above the title in [`ArticleReader.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/ArticleReader.tsx) (matching GameInformer editorial style)
-- [x] Remove `category` property completely from [`writing.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/writing/writing.types.ts) and [`writing.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/writing/writing.data.ts)
-- [x] Configure Work tab to enforce fixed square (`aspect-square`) cards across all projects ([`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx), [`MasonryGrid.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MasonryGrid.tsx), [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts))
-- [x] Configure user's custom `favicon.ico` in [`src/app/favicon.ico`](file:///c:/Projeler/portfolyowebsite/src/app/favicon.ico), [`public/favicon.ico`](file:///c:/Projeler/portfolyowebsite/public/favicon.ico), and [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx)
-- [x] Implement 2nd concept (Typographic Editorial Index view) for Work tab with cursor-tracking floating preview on desktop and mobile inline previews ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx))
-- [x] Refine [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx): removed divider/ruler lines, removed top table headers and row numbers, and switched project descriptions to custom font
-- [x] Remove visual preview from [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), make only project titles clickable, and remove `CASE STUDY // {year}` header from [`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx)
-- [x] Verify build, types, and linter (`npm run lint` and `npm run type-check` both passing with 0 errors, 0 warnings)
-- [x] Set website background color to `#F5EFE7` across [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) and [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), adjusting [`WorkDrawer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkDrawer.tsx) and [`Footer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Footer.tsx) borders/backgrounds for visual consistency
-- [x] Redesign Work section ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)) to match user reference image: 3-column responsive card grid with `aspect-[16/10]`, `rounded-2xl` thumbnails, title and description underneath, and interactive dashed "Start a new project" card
-- [x] Update project titles to natural title case in [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts)
-- [x] Run full verification (`npm run lint` and `npx tsc --noEmit` passing with 0 errors)
-- [x] Apply `#F5EFE6` directly with `!important` to `html` and `body` in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) and [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), ensuring background renders reliably
-- [x] Remove `Projects` heading from [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
-- [x] Remove `Start a new project` card from [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
-- [x] Scale cards down by ~20% and organize into a responsive 3-column grid (`grid-cols-1 sm:grid-cols-2 md:grid-cols-3`) with calibrated typography ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
-- [x] Adjust card aspect ratio to widescreen `16:9` in [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
-- [x] Tighten spacing between cards (`gap-4 sm:gap-5`) and widen container to `max-w-6xl xl:max-w-7xl` so cards appear visibly larger ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
-- [x] Restore hover zoom effect (`group-hover:scale-[1.04]` with smooth ease-out) on card thumbnails while preserving the outer border frame ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
-- [x] Remove outer border stroke line on hover from project cards, retaining only the soft warm background tint (`hover:bg-[#ECE4D9]`) ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
-- [x] Expand cards further with `max-w-[1400px]` container and refined inner padding ([`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
-- [x] Import Google Font `Urbanist` and apply strictly to project card titles and descriptions (`font-urbanist`) without affecting any other site fonts ([`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css), [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx))
-- [x] Update global text/foreground color to `#2d2a24` across [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css), [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx), [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), [`NavMenu.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/NavMenu.tsx), [`AboutView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/about/AboutView.tsx), and [`Footer.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/navigation/Footer.tsx)
-- [x] Increase project title weight to `font-bold` (700) and adjust description spacing (`mt-1.5 sm:mt-2`, `leading-normal`, `tracking-normal`) in [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
-- [x] Apply Google Font `Urbanist` (`font-urbanist`) to essay titles across [`WritingList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/WritingList.tsx) and [`ArticleReader.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/writing/ArticleReader.tsx)
-- [x] Discard side drawer (`WorkDrawer.tsx`) and remove drawer state/imports completely from [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx)
-- [x] Build dedicated project page at `/project/[id]` ([`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)) using [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx) with custom project theming (CubeWar, Tubify)
-- [x] Reduce spacing between project card title and description from `mt-1.5 sm:mt-2` to `mt-0.5` in [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx)
-- [x] Permanently fix blank screen navigation issue:
-  - Removed unstable Next.js 16 Canary experimental flags (`cacheComponents`, `partialPrefetching`) from [`next.config.ts`](file:///c:/Projeler/portfolyowebsite/next.config.ts) which caused partial prerender stream aborts on client route transitions
-  - Pre-renders `/project/[id]` routes as pure static HTML (SSG) with `generateStaticParams` in [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)
-  - Switched page enter animation in [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css) to lightweight hardware compositor `opacity` + `translateY` without `both` fill-mode and without GPU offscreen blur buffer stalls
-
-- [x] Center upper hero section and top bar strictly within `max-w-[900px] mx-auto` in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), pulling title/actions on left and description on right inward so they sit directly aligned atop the 900px media cards
-- [x] Keep site `<title>` permanently fixed to `"Murat Baş"` across all pages without dynamic route overrides:
-  - Set `title: "Murat Baş"` in [`layout.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/layout.tsx)
-  - Removed `generateMetadata` title override from [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/project/%5Bid%5D/page.tsx)
-- [x] Set `draggable={false}` and `select-none` on all card images/videos across [`WorkList.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/WorkList.tsx), [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx), and [`Lightbox.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/Lightbox.tsx)
-- [x] Ensure project detail action buttons (LIVE VIEW, SOURCE CODE, Back) change only their background color on hover, locking text color to white (`color: #ffffff !important`) and excluding buttons from global `a:hover` text color styling in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts), and [`globals.css`](file:///c:/Projeler/portfolyowebsite/src/app/globals.css)
-- [x] Wire `theme.text` from [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts) directly into [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx), removing hardcoded `text-white` from the container, title, description, and captions so custom project text colors apply properly
-- [x] Reposition project detail upper layout matching user sketch and standardize tech stack badges:
-  - Repositioned top circular back button to the left boundary in [`ProjectDetailView.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/ProjectDetailView.tsx)
-  - Expanded hero section across a wide container (`max-w-[1440px] px-6 sm:px-10 lg:px-16`) with `justify-between`, separating title/badges/buttons to the left and narrative description to the right
-  - Standardized tech stack pills with official brand colors (e.g. JavaScript yellow with dark text, TypeScript blue, React cyan, Node green, Rust orange-red, Redis red, Tailwind sky-blue, etc.) and case-insensitive normalization
-  - Added visibility safeguards (`border border-neutral-300 shadow-sm`) for white or unknown tech bubbles so they never become invisible on light backgrounds
-  - Made `SOURCE CODE` button theme-aware with dynamic contrast adaptivity on light/dark backgrounds
-- [x] Full codebase audit and cleanup in strict accordance with [AGENTS.md](file:///c:/Projeler/portfolyowebsite/AGENTS.md):
-  - Removed 9 unused starter SVG assets from `public/images/work/`
-  - Eliminated unused `ExternalLinkIcon` from [`Icons.tsx`](file:///c:/Projeler/portfolyowebsite/src/components/ui/Icons.tsx)
-  - Simplified [`MasonryGrid.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MasonryGrid.tsx) by removing obsolete `PortfolioItem` union type, dead `onSelectWork` prop, and `as Type` assertions
-  - Cleaned up unused `id` prop from [`MediaCard.tsx`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/MediaCard.tsx)
-  - Removed obsolete `aspectRatio` property from `WorkProject` and `ProjectMedia` in [`portfolio.types.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.types.ts) and [`portfolio.data.ts`](file:///c:/Projeler/portfolyowebsite/src/features/portfolio/portfolio.data.ts)
-  - Simplified [`page.tsx`](file:///c:/Projeler/portfolyowebsite/src/app/page.tsx) to pass `filteredVisuals` directly to `MasonryGrid` without intermediate mapping
-  - Verified `npm run type-check` and `npm run lint` passing with 0 errors and 0 warnings
+- [x] Inspected `https://lynnandtonic.com/` (v. XIX — Paperback & Goth Book) using browser subagent:
+  - Documented dual-theme system (Paperback `#e4e2d7` & Goth `#111111` / `#ff3b3b`).
+  - Extracted 436px fixed-column book format, CSS radial-gradient dotted leader lines, Roman numeral chapter headers (`I`, `II`, `III`, `IV`), drop caps, and signature "Squash & Stretch" meta-responsive spring bounce physics.
+- [x] Implemented global styles (`src/app/globals.css`) with:
+  - Dual CSS variable system (`[data-theme="paperback"]` and `[data-theme="goth"]`).
+  - Tactile paper & slate grain backgrounds.
+  - Drop-cap styling for articles (`.drop-cap::first-letter`).
+  - Exact `.toc-leader` radial-gradient dotted lines with `background-repeat: space`.
+  - Inverted skip links, double box-shadow focus rings, and wavy hover underlines (`.hover-wavy`).
+- [x] Created `useSquashStretch` hook recreating Lynn Fisher's signature window resize spring physics (`cubic-bezier(0.175, 0.885, 0.12, 1.775)`).
+- [x] Built `TableOfContents` component replicating the book cover/index with dynamic dotted leaders, Roman numerals, and theme toggle.
+- [x] Built Chapter pages tailored to Murat Baş's actual content:
+  - **Chapter I: About** (`ChapterAbout.tsx`): Framed studio vista, drop-cap opening paragraph, bio narrative, core technologies, and 1-click email copy.
+  - **Chapter II: Work** (`ChapterWork.tsx`): Single-column framed cards for Tubify, Samsunforum, Tarihi Çarşamba Pide, and Hotel Management System.
+  - **Chapter III: Writing** (`ChapterWriting.tsx`): Essay directory and full inline reading view for "Mezuniyet ve Amerika".
+  - **Chapter IV: Visuals** (`ChapterVisuals.tsx`): Framed plates with medium, client, and interactive lightbox modal.
+  - **Book Footer** (`BookFooter.tsx`): Index of chapters, direct contacts, colophon, and quick Sun/Moon toggle.
+- [x] Implemented React 19 / Next.js 16 compliant `useSyncExternalStore` architecture for URL hash navigation (`#about`, `#work`, `#writing`, `#visuals`) and zero-flicker theme persistence.
+- [x] Verified zero errors with `npm run type-check`, `npm run lint`, and `npm run build`.
 
 ### Blockers / Known Issues
 - None.
 
 ### Next Steps
-- Portfolio codebase is clean, lean, and fully compliant with AGENTS.md constitution. Await next user instruction.
+- Await user feedback on visual presentation and interactions.
+- Provide the security upgrade inquiry per Next.js advisory.

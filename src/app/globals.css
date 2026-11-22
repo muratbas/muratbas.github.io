@@ -1,62 +1,122 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F5EFE6;
-  --foreground: #2d2a24;
+  --beige: #e4e2d7;
+  --red: #ff3b3b;
+  --black: #111111;
+  --bg-color: var(--beige);
+  --text-color: var(--black);
+  --accent-color: var(--red);
+  --border-color: rgba(17, 17, 17, 0.2);
+  --subtext-color: rgba(17, 17, 17, 0.7);
+  --focus-color: var(--red);
+  --card-bg: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="paperback"] {
+  --bg-color: #e4e2d7;
+  --text-color: #111111;
+  --accent-color: #ff3b3b;
+  --border-color: rgba(17, 17, 17, 0.2);
+  --subtext-color: rgba(17, 17, 17, 0.7);
+  --focus-color: #ff3b3b;
+  --card-bg: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="goth"] {
+  --bg-color: #111111;
+  --text-color: #ff3b3b;
+  --accent-color: #ffffff;
+  --border-color: rgba(255, 59, 59, 0.3);
+  --subtext-color: rgba(255, 59, 59, 0.75);
+  --focus-color: #ffffff;
+  --card-bg: rgba(255, 59, 59, 0.05);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-custom), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-newsreader), Georgia, serif;
-  --font-urbanist: var(--font-urbanist), sans-serif;
+  --color-background: var(--bg-color);
+  --color-foreground: var(--text-color);
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-urbanist), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-html,
-body {
-  background-color: #F5EFE6 !important;
-  color: #2d2a24 !important;
-  font-family: var(--font-sans);
-  letter-spacing: -0.025em;
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-newsreader {
-  font-family: var(--font-newsreader), Georgia, "Times New Roman", serif;
-  font-weight: 480;
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 8px 8px;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.font-urbanist {
-  font-family: var(--font-urbanist), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+[data-theme="goth"] body {
+  background-image: radial-gradient(rgba(255, 59, 59, 0.08) 1px, transparent 1px);
 }
 
-a:not([class*="btn"]):not([role="button"]) {
-  transition: color 0.15s ease;
+/* Lynn Fisher Spring-loaded Elastic Squash & Stretch container */
+.book-app {
+  transform-origin: 50% 0;
+  will-change: transform;
 }
 
-a:not([class*="btn"]):not([role="button"]):hover {
-  color: #2563eb;
+.book-app.spring-settling {
+  transition: transform 220ms cubic-bezier(0.175, 0.885, 0.12, 1.775);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* Classical Dotted Leader Lines for Table of Contents */
+.toc-leader {
+  flex: 1;
+  background-repeat: space no-repeat;
+  background-image: radial-gradient(circle, currentColor 20%, transparent 21%);
+  background-size: 0.55em 0.55em;
+  background-position: 0 85%;
+  height: 1em;
+  opacity: 0.65;
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.25s ease-out forwards;
+/* Drop-cap for chapter book text */
+.drop-cap::first-letter {
+  float: left;
+  font-size: 3.6rem;
+  line-height: 0.8;
+  margin-right: 0.45rem;
+  margin-top: 0.15rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--text-color);
 }
 
-/* Custom scrollbar for clean editorial look */
+/* Lynn's signature focus ring with double box shadow shield */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 0 3px var(--bg-color), 4px 4px 0 5px var(--text-color);
+}
+
+/* Wavy hover underline */
+.hover-wavy:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  text-decoration-style: wavy;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -64,113 +124,6 @@ a:not([class*="btn"]):not([role="button"]):hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: var(--border-color);
   border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
-}
-
-/* Project page enter blob-fade animation from bottom & exit to top */
-@keyframes projectPageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes projectPageExit {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-28px);
-  }
-}
-
-.animate-project-enter {
-  animation: projectPageEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
-}
-
-.animate-project-exit {
-  animation: projectPageExit 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Project title fade-in from bottom on page enter */
-@keyframes titleFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-title-enter {
-  animation: titleFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.12s backwards;
-}
-
-/* Media card staggered reveal animation */
-@keyframes mediaCardReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(32px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-media-card {
-  animation: mediaCardReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* Inverted fillet corner cutout for media captions matching user screenshots */
-.media-caption-tab {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: var(--sheet-bg, #283b54);
-  padding: 8px 20px 10px 20px;
-  border-top-left-radius: 18px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.media-caption-tab::before {
-  content: "";
-  position: absolute;
-  top: -16px;
-  right: 0;
-  width: 16px;
-  height: 16px;
-  background: transparent;
-  border-bottom-right-radius: 16px;
-  box-shadow: 4px 4px 0 4px var(--sheet-bg, #283b54);
-  pointer-events: none;
-}
-
-.media-caption-tab::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -16px;
-  width: 16px;
-  height: 16px;
-  background: transparent;
-  border-bottom-right-radius: 16px;
-  box-shadow: 4px 4px 0 4px var(--sheet-bg, #283b54);
-  pointer-events: none;
 }

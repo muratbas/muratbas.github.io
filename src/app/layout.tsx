@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { Newsreader, Urbanist } from "next/font/google";
 import "./globals.css";
-
-const customFont = localFont({
-  src: "./fonts/font.otf",
-  variable: "--font-custom",
-  display: "swap",
-});
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -23,9 +16,9 @@ const urbanist = Urbanist({
 });
 
 export const metadata: Metadata = {
-  title: "Murat Baş",
+  title: "Murat Baş — Full-stack Engineer & Designer",
   description:
-    "Hi, I'm Murat and I create things. Based in Samsun, Turkiye.",
+    "Murat Baş — Full-stack engineer and designer based in Samsun, Turkey. Building web products.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -37,14 +30,13 @@ export const metadata: Metadata = {
     "Next.js",
     "TypeScript",
     "Visuals",
-    "Illustrations",
-    "Writing",
+    "Samsun",
   ],
   authors: [{ name: "Murat Baş" }],
   openGraph: {
-    title: "murat baş — work & visuals",
+    title: "Murat Baş — Portfolio",
     description:
-      "Personal portfolio of Murat Baş. Software engineering, visuals, and editorial writing.",
+      "Full-stack engineer and designer based in Samsun, Turkey. Building web products.",
     type: "website",
     locale: "en_US",
   },
@@ -58,12 +50,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="paperback"
       suppressHydrationWarning
-      className={`${customFont.variable} ${newsreader.variable} ${urbanist.variable} h-full antialiased bg-[#F5EFE6]`}
+      className={`${newsreader.variable} ${urbanist.variable} min-h-screen antialiased`}
     >
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col bg-[#F5EFE6] text-[#2d2a24] selection:bg-[#2d2a24] selection:text-white font-sans"
+        className="min-h-screen font-serif text-[18px] leading-relaxed selection:bg-[#ff3b3b] selection:text-white"
       >
         {children}
       </body>

@@ -5,22 +5,20 @@ export const WORK_PROJECTS: WorkProject[] = [
     id: "tubify",
     title: "Tubify",
     imageUrl: "/images/work/banner-tubify.png",
-    description: "Native music app",
+    description: "Distraction-free desktop music streaming client",
     longDescription: [
       "A distraction-free native desktop music player interfacing with YouTube Music API with seamless audio streaming and zero advertisement latency.",
       "Features background audio playback, local offline caching, and responsive GPU audio visualizer waveforms built with high performance and minimal memory footprint."
     ],
-    stack: ["Rust", "Typescript", "Tauri", "Tailwind CSS"],
-    liveUrl: "https://example.com/aura",
+    stack: ["Rust", "TypeScript", "Tauri", "Tailwind CSS"],
+    liveUrl: "https://tubify.muratbas.com",
     githubUrl: "https://github.com/muratbas/tubify",
     year: "2026",
     theme: {
-      bg: "#F9FBFE",
-      sheetBg: "#E9EDF6",
-      accent: "#e43232ff",
-      text: "#0D1B3A",
-      selectionBg: "#e43232ff",
-      selectionText: "#ffffff",
+      bg: "#0d1117",
+      sheetBg: "#161b22",
+      accent: "#e43232",
+      text: "#F3F2EE",
     },
     media: [
       {
@@ -31,28 +29,75 @@ export const WORK_PROJECTS: WorkProject[] = [
     ],
   },
   {
-    id: "omu",
-    title: "Omu Forum",
+    id: "samsunforum",
+    title: "Samsunforum",
     imageUrl: "/images/work/omuforum.png",
-    description: "University forum website",
+    description: "University & city community discussion platform",
     longDescription: [
-      "It is a forum website for the Ondokuz Mayıs University community, where students and faculty members can communicate with each other."
+      "A modern community forum built for the Ondokuz Mayıs University community and Samsun developers, featuring focused discussion channels, markdown editor, and fast server-side rendering."
     ],
-    stack: ["Next.js", "Typescript", "Tailwind CSS"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
     liveUrl: "https://omu.muratbas.com",
     year: "2025",
     theme: {
       bg: "#F9FBFE",
       sheetBg: "#E9EDF6",
-      accent: "#e43232ff",
+      accent: "#2563eb",
       text: "#0D1B3A",
-      selectionBg: "#e43232ff",
-      selectionText: "#ffffff",
     },
     media: [
       {
         url: "/images/work/omuforum.png",
-        caption: "Omu Forum",
+        caption: "Forum Discussions",
+        type: "image",
+      }
+    ],
+  },
+  {
+    id: "carsamba-pide",
+    title: "Tarihi Çarşamba Pide",
+    imageUrl: "/images/work/pide.png",
+    description: "Heritage bakery digital showcase & ordering experience",
+    longDescription: [
+      "A clean digital presence for a historic regional bakery, featuring product menus, reservation flow, and heritage storytelling."
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://carsambapide.muratbas.com",
+    year: "2024",
+    theme: {
+      bg: "#FAF6F0",
+      sheetBg: "#F0E8DD",
+      accent: "#b45309",
+      text: "#292524",
+    },
+    media: [
+      {
+        url: "/images/work/pide.png",
+        caption: "Bakery Menu & Presentation",
+        type: "image",
+      }
+    ],
+  },
+  {
+    id: "hotel-management",
+    title: "Hotel Management System",
+    imageUrl: "/images/work/timeisup.png",
+    description: "Desktop room occupancy, booking & billing workflow tool",
+    longDescription: [
+      "An offline-first desktop management suite for independent hotels, streamlining room allocations, guest registration, and rapid accounting."
+    ],
+    stack: ["TypeScript", "React", "Electron", "SQLite"],
+    year: "2024",
+    theme: {
+      bg: "#18181b",
+      sheetBg: "#27272a",
+      accent: "#10b981",
+      text: "#fafafa",
+    },
+    media: [
+      {
+        url: "/images/work/timeisup.png",
+        caption: "Occupancy Calendar & Billing",
         type: "image",
       }
     ],
