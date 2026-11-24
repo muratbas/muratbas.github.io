@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
-import { Newsreader, Urbanist } from "next/font/google";
+import {
+  Momo_Trust_Display,
+  Newsreader,
+  Stack_Sans_Headline,
+} from "next/font/google";
 import "./globals.css";
 
 const newsreader = Newsreader({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-newsreader",
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const urbanist = Urbanist({
-  subsets: ["latin"],
-  variable: "--font-urbanist",
+const momoTrustDisplay = Momo_Trust_Display({
+  weight: "400",
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-momo",
+  display: "swap",
+});
+
+const stackSansHeadline = Stack_Sans_Headline({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-stack-sans",
   display: "swap",
 });
 
@@ -29,7 +40,6 @@ export const metadata: Metadata = {
     "Design Engineer",
     "Next.js",
     "TypeScript",
-    "Visuals",
     "Samsun",
   ],
   authors: [{ name: "Murat Baş" }],
@@ -50,14 +60,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="paperback"
-      suppressHydrationWarning
-      className={`${newsreader.variable} ${urbanist.variable} min-h-screen antialiased`}
+      className={`${newsreader.variable} ${momoTrustDisplay.variable} ${stackSansHeadline.variable} min-h-screen antialiased`}
     >
-      <body
-        suppressHydrationWarning
-        className="min-h-screen font-serif text-[18px] leading-relaxed selection:bg-[#ff3b3b] selection:text-white"
-      >
+      <body className="min-h-screen font-sans text-[#0A0A0A] bg-[#FAFAFA] selection:bg-[#0A0A0A] selection:text-white relative">
         {children}
       </body>
     </html>

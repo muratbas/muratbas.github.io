@@ -1,5 +1,5 @@
-import { BookExperience } from "@/features/book/BookExperience";
+import { PortfolioShell } from "@/features/portfolio/PortfolioShell";
 
 export default function Home() {
-  return <BookExperience />;
+  return <PortfolioShell />;
 }

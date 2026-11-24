@@ -1,5 +1,3 @@
-export type AspectRatioType = "tall" | "portrait" | "square" | "landscape" | "wide";
-
 export interface ProjectMedia {
   type?: "image" | "video";
   url: string;
@@ -28,15 +26,4 @@ export interface WorkProject {
   year: string;
   media?: ProjectMedia[];
   theme?: ProjectTheme;
-}
-
-export interface VisualItem {
-  id: string;
-  title: string;
-  aspectRatio: AspectRatioType;
-  imageUrl: string;
-  year: string;
-  medium: string;
-  category: "art" | "photos";
-  client?: string;
 }
