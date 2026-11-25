@@ -16,6 +16,60 @@ function GitHubIcon() {
   );
 }
 
+function DownloadIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-4 h-4 inline-block"
+    >
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  );
+}
+
+async function handleDownloadClick(
+  e: React.MouseEvent<HTMLAnchorElement>,
+  downloadUrl: string
+) {
+  const match = downloadUrl.match(
+    /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/releases\/latest\/?$/
+  );
+  if (!match) return;
+
+  e.preventDefault();
+  const [, owner, repo] = match;
+
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/releases/latest`
+    );
+    if (!res.ok) throw new Error("GitHub API error");
+    const data: {
+      assets?: { name: string; browser_download_url: string }[];
+    } = await res.json();
+
+    const preferredAsset =
+      data.assets?.find((a) => a.name.endsWith(".exe")) ?? data.assets?.[0];
+
+    if (preferredAsset?.browser_download_url) {
+      window.location.href = preferredAsset.browser_download_url;
+      return;
+    }
+  } catch {
+    // Fallback to opening the latest release page
+  }
+
+  window.open(downloadUrl, "_blank", "noopener,noreferrer");
+}
+
 export function ProjectsTab() {
   const railRef = useRef<HTMLDivElement>(null);
   const [selectedProjectTitle, setSelectedProjectTitle] = useState<string | null>(null);
@@ -94,7 +148,9 @@ export function ProjectsTab() {
             )}
           </div>
 
-          {(selectedProject.liveUrl || selectedProject.githubUrl) && (
+          {(selectedProject.liveUrl ||
+            selectedProject.githubUrl ||
+            selectedProject.downloadUrl) && (
             <div className="flex flex-wrap items-center gap-5 pt-1 text-base font-semibold">
               {selectedProject.liveUrl && (
                 <a
@@ -115,6 +171,20 @@ export function ProjectsTab() {
                 >
                   <span>source code</span>
                   <GitHubIcon />
+                </a>
+              )}
+              {selectedProject.downloadUrl && (
+                <a
+                  href={selectedProject.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) =>
+                    handleDownloadClick(e, selectedProject.downloadUrl!)
+                  }
+                  className="inline-flex items-center gap-1.5 text-[#0A0A0A] hover:opacity-70 transition-opacity lowercase"
+                >
+                  <span>download</span>
+                  <DownloadIcon />
                 </a>
               )}
             </div>

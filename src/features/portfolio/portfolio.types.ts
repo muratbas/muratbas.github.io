@@ -19,6 +19,7 @@ export interface WorkProject {
   stack: string[];
   liveUrl?: string;
   githubUrl?: string;
+  downloadUrl?: string;
   year: string;
   media?: ProjectMedia[];
 }

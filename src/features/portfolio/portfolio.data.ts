@@ -34,7 +34,8 @@ export const WORK_PROJECTS: WorkProject[] = [
       "Each album view presents hi-res artwork, the full tracklist, and metadata including label, release date, and duration, with integrated play queues that preserve listening order."
     ],
     stack: ["Rust", "TypeScript", "Tauri"],
-    githubUrl: "https://github.com/muratbas/tubify",
+    githubUrl: "https://github.com/muratbas/Tubify",
+    downloadUrl: "https://github.com/muratbas/Tubify/releases/latest",
     year: "2026",
     media: [
       {
