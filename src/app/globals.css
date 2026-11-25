@@ -32,3 +32,8 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out both;
 }
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
