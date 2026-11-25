@@ -21,10 +21,10 @@ export function WritingTab() {
           <button
             type="button"
             onClick={() => setActiveArticleId(null)}
-            className="cursor-pointer hover:text-[#0A0A0A] transition-colors flex items-center gap-1.5"
+            className="cursor-pointer hover:text-[#0A0A0A] transition-colors flex items-center gap-1.5 lowercase"
           >
             <span>←</span>
-            <span>Back to writing</span>
+            <span>back</span>
           </button>
           <span>{activeArticle.date}</span>
         </div>
@@ -57,9 +57,9 @@ export function WritingTab() {
           <button
             type="button"
             onClick={() => setActiveArticleId(null)}
-            className="cursor-pointer text-xs uppercase tracking-widest text-[#0A0A0A]/70 hover:text-[#0A0A0A] underline underline-offset-4 transition-colors"
+            className="cursor-pointer text-xs lowercase tracking-widest text-[#0A0A0A]/70 hover:text-[#0A0A0A] underline underline-offset-4 transition-colors"
           >
-            ← Back to all essays
+            ← back
           </button>
         </div>
       </article>

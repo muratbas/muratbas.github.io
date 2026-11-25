@@ -4,14 +4,13 @@ export const WORK_PROJECTS: WorkProject[] = [
   {
     id: "tubify",
     title: "Tubify",
-    imageUrl: "/images/work/banner-tubify.png",
+    imageUrl: "/images/work/tubify-banner.png",
     description: "Native music app",
     longDescription: [
       "A distraction-free native desktop music player interfacing with YouTube Music API with seamless audio streaming and zero advertisement latency.",
       "Features background audio playback, local offline caching, and responsive GPU audio visualizer waveforms built with high performance and minimal memory footprint."
     ],
     stack: ["Rust", "TypeScript", "Tauri", "Tailwind CSS"],
-    liveUrl: "https://tubify.muratbas.com",
     githubUrl: "https://github.com/muratbas/tubify",
     year: "2026",
     theme: {
@@ -22,7 +21,7 @@ export const WORK_PROJECTS: WorkProject[] = [
     },
     media: [
       {
-        url: "/images/work/banner-tubify.png",
+        url: "/images/work/tubify-banner.png",
         caption: "Audio Player & Queue",
         type: "image",
       }

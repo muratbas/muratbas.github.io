@@ -15,10 +15,9 @@ const TABS: { key: TabKey; label: string }[] = [
 
 const TAB_BACKGROUNDS: Record<TabKey, React.CSSProperties> = {
   projects: {
-    backgroundImage: "url('/images/gradients/bg-projects.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
+    backgroundColor: "#FAFAFA",
+    backgroundImage:
+      "radial-gradient(circle at 12% 85%, rgba(255, 184, 153, 0.55) 0%, transparent 45%), radial-gradient(circle at 88% 82%, rgba(167, 199, 255, 0.6) 0%, transparent 48%), radial-gradient(circle at 52% 18%, rgba(226, 212, 255, 0.55) 0%, transparent 50%)",
   },
   writing: {
     backgroundImage: "url('/images/gradients/bg-writing.jpg')",
@@ -27,14 +26,26 @@ const TAB_BACKGROUNDS: Record<TabKey, React.CSSProperties> = {
     backgroundRepeat: "no-repeat",
   },
   about: {
-    backgroundColor: "#FAFAFA",
-    backgroundImage:
-      "radial-gradient(circle at 12% 85%, rgba(255, 184, 153, 0.55) 0%, transparent 45%), radial-gradient(circle at 88% 82%, rgba(167, 199, 255, 0.6) 0%, transparent 48%), radial-gradient(circle at 52% 18%, rgba(226, 212, 255, 0.55) 0%, transparent 50%)",
+    backgroundImage: "url('/images/gradients/bg-projects.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   },
 };
 
 export function PortfolioShell() {
   const [activeTab, setActiveTab] = useState<TabKey>("projects");
+  const [resetKey, setResetKey] = useState(0);
+
+  const handleGoHome = () => {
+    setActiveTab("projects");
+    setResetKey((k) => k + 1);
+  };
+
+  const handleSelectTab = (key: TabKey) => {
+    setActiveTab(key);
+    setResetKey((k) => k + 1);
+  };
 
   return (
     <div className="min-h-screen relative text-[#0A0A0A]">
@@ -49,7 +60,7 @@ export function PortfolioShell() {
       <header className="pt-14 sm:pt-20 pb-10 sm:pb-12 px-6 flex flex-col items-center">
         <button
           type="button"
-          onClick={() => setActiveTab("projects")}
+          onClick={handleGoHome}
           aria-label="Murat Baş — Home"
           className="cursor-pointer border-0 bg-transparent p-0"
         >
@@ -71,7 +82,7 @@ export function PortfolioShell() {
               <button
                 key={key}
                 type="button"
-                onClick={() => setActiveTab(key)}
+                onClick={() => handleSelectTab(key)}
                 aria-current={isActive ? "page" : undefined}
                 className={`font-display lowercase text-base sm:text-lg tracking-normal border-0 bg-transparent p-0 cursor-pointer transition-all duration-200 ${
                   isActive
@@ -88,7 +99,7 @@ export function PortfolioShell() {
 
       {/* Main Content Area */}
       <main
-        key={activeTab}
+        key={`${activeTab}-${resetKey}`}
         className={`pb-20 animate-fadeIn ${
           activeTab === "projects" ? "w-full" : "max-w-4xl mx-auto px-6"
         }`}

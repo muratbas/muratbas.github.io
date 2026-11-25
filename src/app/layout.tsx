@@ -18,20 +18,23 @@ const momoTrustDisplay = Momo_Trust_Display({
   subsets: ["latin", "latin-ext"],
   variable: "--font-momo",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 const stackSansHeadline = Stack_Sans_Headline({
   subsets: ["latin", "latin-ext"],
   variable: "--font-stack-sans",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
-  title: "Murat Baş — Full-stack Engineer & Designer",
+  title: "Murat Bas | Portfolio",
   description:
     "Murat Baş — Full-stack engineer and designer based in Samsun, Turkey. Building web products.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
   keywords: [
     "Murat Baş",
@@ -60,9 +63,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${newsreader.variable} ${momoTrustDisplay.variable} ${stackSansHeadline.variable} min-h-screen antialiased`}
     >
-      <body className="min-h-screen font-sans text-[#0A0A0A] bg-[#FAFAFA] selection:bg-[#0A0A0A] selection:text-white relative">
+      <body
+        suppressHydrationWarning
+        className="min-h-screen font-sans text-[#0A0A0A] bg-[#FAFAFA] selection:bg-[#0A0A0A] selection:text-white relative"
+      >
         {children}
       </body>
     </html>
