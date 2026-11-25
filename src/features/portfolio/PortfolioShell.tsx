@@ -15,9 +15,9 @@ const TABS: { key: TabKey; label: string }[] = [
 
 const TAB_BACKGROUNDS: Record<TabKey, React.CSSProperties> = {
   projects: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: "#F8F9FA",
     backgroundImage:
-      "radial-gradient(circle at 12% 85%, rgba(255, 184, 153, 0.55) 0%, transparent 45%), radial-gradient(circle at 88% 82%, rgba(167, 199, 255, 0.6) 0%, transparent 48%), radial-gradient(circle at 52% 18%, rgba(226, 212, 255, 0.55) 0%, transparent 50%)",
+      "radial-gradient(circle at 10% 15%, rgba(206, 212, 218, 0.85) 0%, transparent 48%), radial-gradient(circle at 88% 82%, rgba(173, 181, 189, 0.75) 0%, transparent 52%), radial-gradient(circle at 55% 45%, rgba(233, 236, 239, 0.9) 0%, transparent 55%)",
   },
   writing: {
     backgroundImage: "url('/images/gradients/bg-writing.jpg')",

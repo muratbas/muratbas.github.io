@@ -9,11 +9,14 @@ export function WritingTab() {
   const activeArticle = ARTICLES.find((a) => a.id === activeArticleId);
 
   if (activeArticle) {
-    const paragraphs = activeArticle.content
-      .trim()
-      .split("\n\n")
-      .map((p) => p.trim())
-      .filter(Boolean);
+    const blocks =
+      activeArticle.blocks && activeArticle.blocks.length > 0
+        ? activeArticle.blocks
+        : (activeArticle.content ?? "")
+            .trim()
+            .split("\n\n")
+            .map((p) => p.trim())
+            .filter(Boolean);
 
     return (
       <article className="max-w-2xl mx-auto space-y-7 animate-fadeIn">
@@ -48,9 +51,29 @@ export function WritingTab() {
         )}
 
         <div className="space-y-5 text-base sm:text-lg leading-relaxed font-serif text-[#0A0A0A]/90">
-          {paragraphs.map((p, idx) => (
-            <p key={idx}>{p}</p>
-          ))}
+          {blocks.map((block, idx) =>
+            typeof block === "string" ? (
+              <p key={idx}>{block}</p>
+            ) : (
+              <figure key={idx} className="space-y-2 py-2">
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <Image
+                    src={block.url}
+                    alt={block.caption ?? activeArticle.title}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 672px"
+                    className="object-cover"
+                  />
+                </div>
+                {block.caption && (
+                  <figcaption className="text-xs font-sans text-[#0A0A0A]/55">
+                    {block.caption}
+                  </figcaption>
+                )}
+              </figure>
+            )
+          )}
         </div>
 
         <div className="pt-8 text-center">

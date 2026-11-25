@@ -18,9 +18,9 @@ function GitHubIcon() {
 
 export function ProjectsTab() {
   const railRef = useRef<HTMLDivElement>(null);
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const [selectedProjectTitle, setSelectedProjectTitle] = useState<string | null>(null);
 
-  const selectedProject = WORK_PROJECTS.find((p) => p.id === selectedProjectId);
+  const selectedProject = WORK_PROJECTS.find((p) => p.title === selectedProjectTitle);
 
   useEffect(() => {
     if (selectedProject) return;
@@ -47,19 +47,18 @@ export function ProjectsTab() {
             {
               url: selectedProject.imageUrl,
               caption: selectedProject.title,
-              type: "image" as const,
             },
           ];
 
     return (
       <article
-        key={selectedProject.id}
+        key={selectedProject.title}
         className="max-w-2xl mx-auto px-6 space-y-7 animate-fadeIn"
       >
         <div className="flex items-center text-xs uppercase tracking-widest text-[#0A0A0A]/65">
           <button
             type="button"
-            onClick={() => setSelectedProjectId(null)}
+            onClick={() => setSelectedProjectTitle(null)}
             className="cursor-pointer hover:text-[#0A0A0A] transition-colors flex items-center gap-1.5 lowercase"
           >
             <span>←</span>
@@ -125,7 +124,7 @@ export function ProjectsTab() {
         <div className="space-y-6">
           {mediaList.map((item, idx) => (
             <figure key={idx} className="space-y-2">
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border-[3px] border-[#0A0A0A] bg-black/[0.04]">
+              <div className="relative aspect-[16/10] w-full overflow-hidden border-[3px] border-[#0A0A0A] bg-black/[0.04]">
                 <Image
                   src={item.url}
                   alt={item.caption ?? selectedProject.title}
@@ -145,10 +144,30 @@ export function ProjectsTab() {
         </div>
 
         {selectedProject.longDescription && selectedProject.longDescription.length > 0 && (
-          <div className="space-y-4 text-base sm:text-lg leading-relaxed text-[#0A0A0A]/85">
-            {selectedProject.longDescription.map((paragraph, idx) => (
-              <p key={idx}>{paragraph}</p>
-            ))}
+          <div className="space-y-6 text-base sm:text-lg leading-relaxed text-[#0A0A0A]/85">
+            {selectedProject.longDescription.map((block, idx) =>
+              typeof block === "string" ? (
+                <p key={idx}>{block}</p>
+              ) : (
+                <figure key={idx} className="space-y-2">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-[3px] border-[#0A0A0A] bg-black/[0.04]">
+                    <Image
+                      src={block.url}
+                      alt={block.caption ?? selectedProject.title}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, 672px"
+                      className="object-cover"
+                    />
+                  </div>
+                  {block.caption && (
+                    <figcaption className="text-xs text-[#0A0A0A]/55">
+                      {block.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              )
+            )}
           </div>
         )}
       </article>
@@ -163,12 +182,12 @@ export function ProjectsTab() {
       >
         {WORK_PROJECTS.map((project, idx) => (
           <article
-            key={project.id}
+            key={project.title}
             className="shrink-0 w-[82vw] sm:w-[400px]"
           >
             <button
               type="button"
-              onClick={() => setSelectedProjectId(project.id)}
+              onClick={() => setSelectedProjectTitle(project.title)}
               aria-label={`Open ${project.title} details`}
               className="group block relative aspect-[16/10] w-full overflow-hidden rounded-2xl border-[3px] border-[#0A0A0A] bg-black/[0.04] mb-1.5 cursor-pointer text-left p-0"
             >
